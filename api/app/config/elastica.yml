@@ -1,0 +1,205 @@
+services:
+    # Custom transformer for product search
+    app.transformers.elastica.product:
+        class: WyndApi\WyndApiCoreBundle\Transformer\ElasticaToProductTransformer
+        arguments: ['@doctrine', 'WyndApi\WyndApiCoreBundle\Entity\ProductInterface', {query_builder_method: createSearchQueryBuilder}]
+        calls:
+            - [ setPropertyAccessor, ['@fos_elastica.property_accessor']]
+            - [ setResolveTargetEntities, ["%wynd_resolve_target_entities%"]]
+            - [ setAdditionalArguments, ['@api.product_price_manager', '@request_stack']]
+        tags:
+            - { name: fos_elastica.elastica_to_model_transformer, type: "product", index: "app.product" }
+
+    # Event listener on indexation
+    app.listener.custom_property:
+        class: WyndApi\WyndApiCoreBundle\EventListener\ProductPropertyListener
+        arguments: ["@api.entity_manager"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+fos_elastica:
+    serializer: ~
+    clients:
+        default: { url: "%env(ELASTICSEARCH_URL)%" }
+    indexes:
+        serialization:
+            index_name: "%elasticsearch_index_name%"
+            settings:
+                index:
+                    analysis:
+                        analyzer:
+                            custom_analyzer:
+                                type: custom
+                                tokenizer: standard
+                                filter:  [ lowercase, asciifolding, stopwords, snowball, elision, worddelimiter ]
+                            custom_search_analyzer:
+                                type: custom
+                                tokenizer: standard
+                                filter:  [ lowercase, asciifolding, stopwords, elision, worddelimiter ]
+                        tokenizer:
+                            nGram:
+                                type: nGram
+                                min_gram: 2
+                                max_gram: 20
+
+                        filter:
+                            snowball:
+                                type: snowball
+                                language: French
+                            elision:
+                                type: elision
+                                articles: [l, m, t, qu, n, s, j, d]
+                            stopwords:
+                                type: stop
+                                stopwords: [_french_]
+                                ignore_case: true
+                            worddelimiter:
+                                type: word_delimiter
+
+            types:
+                product:
+                    persistence:
+                        driver: orm
+                        model: WyndApi\WyndApiCoreBundle\Entity\Product
+                        elastica_to_model_transformer:
+                            service: app.transformers.elastica.product
+                        finder: ~
+                        provider: ~
+                        listener: ~
+                    properties:
+                        id: ~
+                        ref:
+                            type: "text"
+                            fielddata: true
+                        barcodes:
+                            type: object
+                            properties:
+                                barcode:
+                                    type: keyword
+                                    index: not_analyzed
+                    serializer:
+                        groups: ["listProduct", "treeProduct"]
+                        version: '1.1'
+                        serialize_null: true
+                category:
+                    persistence:
+                        driver: orm
+                        model: WyndApi\WyndApiCoreBundle\Entity\Category
+                        finder: ~
+                        provider: ~
+                        listener: ~
+                        elastica_to_model_transformer:
+                            query_builder_method: createSearchQueryBuilder
+
+                    properties:
+                        id: ~
+                        label:
+                            fields:
+                                raw:
+                                    type: string
+                                    index: not_analyzed
+                    serializer:
+                        groups: ["list", "tree", "elastica"]
+                        version: '1.1'
+                        serialize_null: true
+                customer:
+                    persistence:
+                        driver: orm
+                        model: WyndApi\WyndApiCoreBundle\Entity\Customer\Customer
+                        finder: ~
+                        provider:
+                            batch_size: 20
+                        listener: ~
+                        elastica_to_model_transformer:
+                            query_builder_method: createSearchQueryBuilder
+                    properties:
+                        id: ~
+                        firstname:
+                            analyzer: custom_search_analyzer
+                            type: string
+                        lastname:
+                            analyzer: custom_search_analyzer
+                            type: string
+                        email:
+                            fields:
+                                raw:
+                                    type: string
+                                    index: not_analyzed
+                        login:
+                            fields:
+                                raw:
+                                    type: string
+                                    index: not_analyzed
+                        company:
+                            type: "object"
+                            properties:
+                                label:
+                                    analyzer: custom_search_analyzer
+                                    type: string
+                    serializer:
+                        groups: ["customer", "customerEntity", "cateringCustomer"]
+                        version: '1.1'
+                        serialize_null: true
+                order:
+                    persistence:
+                        driver: orm
+                        model: WyndApi\WyndApiCoreBundle\Entity\Order\Order
+                        finder: ~
+                        provider:
+                            batch_size: 20
+                        listener: ~
+                        elastica_to_model_transformer:
+                            query_builder_method: createSearchQueryBuilder
+                    properties:
+                        id: ~
+                        uuid:
+                            fields:
+                                raw:
+                                    type: string
+                                    index: not_analyzed
+                        reference:
+                            fields:
+                                raw:
+                                    type: string
+                                    index: not_analyzed
+                        content:
+                            type: "object"
+                            properties:
+                                vat_rate:
+                                    type: float
+                                price:
+                                    type: float
+                        customer:
+                            type: "object"
+                            properties:
+                                id: ~
+                                first_name:
+                                    type: string
+                                    index: not_analyzed
+                                last_name:
+                                    type: string
+                                    index: not_analyzed
+                                login:
+                                    type: string
+                                    index: not_analyzed
+                        vat_allocation:
+                            type: "object"
+                            properties:
+                                vat_rate:
+                                    type: float
+                                total_tax_excluded:
+                                    type: float
+                                vat_amount:
+                                    type: float
+                                total_tax_included:
+                                    type: float
+                        created_at:
+                            type: date
+                        started_at:
+                            type: date
+                        due_date:
+                            type: date
+                    serializer:
+                        groups: ["listOrder", "orders", "booking", "elastica", "customer", "customerEntity"]
+                        version: '1.1'
+                        serialize_null: true

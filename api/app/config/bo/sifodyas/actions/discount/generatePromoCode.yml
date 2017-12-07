@@ -1,0 +1,46 @@
+back_office:
+    action_discount_generatePromoCode:
+        label: Generate a new promo code
+        entity:
+            discount: Discount
+        input:
+            type:
+                name: Type
+                key: type
+                type: Enum
+                variant: "increment, random_5, random_10"
+                default: "increment"
+            prefix:
+                name: Prefix
+                key: prefix
+                type: string
+                required: true
+                help_text: Enter here the prefix of the promo code
+            number:
+                name: How Much
+                key: number
+                type: number
+                variant: integer
+                required: true
+                help_text: How much do you want generate ?
+            max_uses:
+                name: Max Uses
+                key: max_uses
+                type: number
+                variant: integer
+                required: true
+                help_text: Max uses ?
+            days_before_reset:
+                name: Days Before Reset
+                key: days_before_reset
+                type: number
+                variant: integer
+                required: true
+                help_text: Days Before Reset ?
+        url: "/discounts/{discount.id}/generate_promo_code"
+        body:
+            type: "{_input.type}_monCodePromo"
+            prefix: "{_input.prefix}_monCodePromo"
+            number: "{_input.number}_monCodePromo"
+            max_uses: "{_input.max_uses}_monCodePromo"
+            days_before_reset: "{_input.days_before_reset}_monCodePromo"

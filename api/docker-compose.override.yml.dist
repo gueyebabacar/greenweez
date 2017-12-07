@@ -1,0 +1,94 @@
+version: '2.0'
+
+services:
+
+# +--------------------------+
+# |         Services         |
+# +--------------------------+
+
+    api:
+        volumes:
+            - ~/.ssh:/var/www/.ssh
+            - ~/.composer:/var/www/.composer
+        environment:
+            DOMAIN_NAME: api.starter.docker
+            VIRTUAL_HOST: api.starter.docker
+## To use the xdebug php debugger
+#            XDEBUG_CONFIG: remote_host=192.168.99.1
+## You can uncomment these lines to fix perm issue on macOS
+#            WWW_DATA_UID: 1000
+#            WWW_DATA_GUID: 1000
+
+#        networks:
+#            - default
+#            - proxy
+## You can uncomment these lines if you want to access api using http://localhost
+#        ports:
+#            - 80:80
+
+    elasticsearch:
+        environment:
+            DOMAIN_NAME: elasticsearch.starter.docker
+            VIRTUAL_HOST: elasticsearch.starter.docker
+            VIRTUAL_PORT: 9200
+#        networks:
+#            - default
+#            - proxy
+## You can uncomment these lines if you want to access elasticsearch using http://localhost:9200 or http://localhost:9300
+#        ports:
+#            - 9200:9200
+#            - 9300:9300
+
+# +-------------------------+
+# |          Tools          |
+# +-------------------------+
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on:
+            - database
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            PMA_HOST: database
+            DOMAIN_NAME: phpmyadmin.starter.docker
+            VIRTUAL_HOST: phpmyadmin.starter.docker
+#        networks:
+#            - default
+#            - proxy
+## You can uncomment these line if you want to access phpMyAdmin using http://localhost:8080
+#        ports:
+#            - 8080:80
+
+    mail:
+        image: djfarrelly/maildev
+        environment:
+            VIRTUAL_HOST: mail.starter.docker
+            DOMAIN_NAME: mail.starter.docker
+#        networks:
+#            - default
+#            - proxy
+## You can uncomment these line if you want to access MailDev using http://localhost:8081
+#        ports:
+#            - "8081:80"
+
+# +-------------------------+
+# |          Proxy          |
+# +-------------------------+
+
+## If you are using MacOS you need a proxy
+## The recommended way is too have a global proxy for all your applications: https://github.com/jwilder/nginx-proxy#readme
+## but if it is not the case you can uncomment this service. See https://github.com/jwilder/nginx-proxy#readme
+#    proxy:
+#        image: jwilder/nginx-proxy
+#        volumes:
+#            - "/var/run/docker.sock:/tmp/docker.sock:ro"
+#        ports:
+#            - 80:80
+#            - 443:443
+#
+## If you already have an external jwilder/nginx-proxy container associated to the network proxy,
+## you can uncomment these lines and all the network definitions in this file
+#networks:
+#    proxy:
+#        external:
+#            name: proxy

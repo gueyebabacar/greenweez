@@ -1,0 +1,252 @@
+{% extends '@WyndApiCore/emails/email_layout.html.twig' %}
+{% trans_default_domain "email" %}
+
+{% block content %}
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="m_-4735198323048866632m_7440328756943660248bodyTable" style="border-collapse:collapse;border-left:24px solid #ffffff;background-color:#ffffff;height:100%;margin:0;padding:0;width:100%">
+      <tbody>
+      <tr>
+        <td align="center" valign="top" id="m_-4735198323048866632m_7440328756943660248bodyCell" style="padding-top:0;padding-bottom:40px;height:100%;margin:0;padding:0;width:100%">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" id="m_-4735198323048866632m_7440328756943660248emailBody" style="border-collapse:separate;background-color:#ffffff;border-left:0 solid #0;border-radius:0">
+            <tbody>
+            <tr>
+              <td align="center" valign="top">
+                <table border="0" cellpadding="0" cellspacing="0" width="565" style="border-collapse:collapse">
+                  <tbody>
+                  <tr>
+                    <td align="center" valign="top">
+                      <table border="0" cellpadding="0" cellspacing="0" width="400" class="m_-4735198323048866632m_7440328756943660248flexibleContainer" style="border-collapse:collapse">
+                        <tbody>
+                        <tr>
+                          <td align="left" valign="top" width="400" class="m_-4735198323048866632m_7440328756943660248flexibleContainerCell" style="padding-top:0;padding-right:0;padding-left:0">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4735198323048866632m_7440328756943660248nestedContainer" style="border-collapse:collapse;background-color:#ffffff;border:0 solid #ccc">
+                              <tbody>
+                              <tr>
+                                <td valign="top" class="m_-4735198323048866632m_7440328756943660248nestedContainerCell" style="padding-top:20px;padding-right:20px;padding-left:20px">
+                                  <table align="Left" border="0" cellpadding="0" cellspacing="0" width="340" class="m_-4735198323048866632m_7440328756943660248flexibleContainer" style="border-collapse:collapse">
+                                    <tbody>
+                                    <tr>
+                                      <td valign="top" class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                        {{ 'congratulation_order_validated'|trans({'%firstname%': order.customer.firstname}, 'email', 'en') }}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td valign="top" class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                        {{ 'congratulation_order_validated'|trans({'%firstname%': order.customer.firstname}, 'email', 'ar') }}
+                                      </td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" valign="top">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
+                  <tbody>
+                  <tr>
+                    <td align="center" valign="top">
+                      <table border="0" cellpadding="0" cellspacing="0" width="565" class="m_-4735198323048866632m_7440328756943660248flexibleContainer" style="border-collapse:collapse">
+                        <tbody>
+                        <tr>
+                          <td align="center" valign="top" width="500" class="m_-4735198323048866632m_7440328756943660248flexibleContainerCell m_-4735198323048866632m_7440328756943660248bottomShim" style="padding-top:0;padding-right:0;padding-left:0;padding-bottom:20px">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4735198323048866632m_7440328756943660248nestedContainer" style="border-collapse:collapse;background-color:#ffffff;border:0 solid #ccc">
+                              <tbody>
+                              <tr>
+                                <td valign="top" class="m_-4735198323048866632m_7440328756943660248nestedContainerCell" style="padding-top:20px;padding-right:20px;padding-left:20px">
+                                  <table border="0" cellpadding="0" cellspacing="0" width="565" class="m_-4735198323048866632m_7440328756943660248flexibleContainer" style="border-collapse:collapse">
+                                    <tbody>
+                                    <tr>
+                                      <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248bottomShim" style="padding-bottom:20px">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="400" class="m_-4735198323048866632m_7440328756943660248emailCalendar" style="border-collapse:collapse;background-color:#fff;border:1px solid #ccc">
+                                          <tbody>
+                                          <tr>
+                                            <td align="center" valign="top" colspan="2" style="padding:5px">
+                                              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
+                                                <tbody>
+                                                <tr>
+                                                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248emailCalendarMonth" style="background-color:#000;color:#fff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;padding-top:10px;padding-bottom:10px;text-align:center">
+                                                      {{ order.entity.name }}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="m_-4735198323048866632m_7440328756943660248emailCalendarAddress" style="color:#333;font-family:Helvetica,Arial,sans-serif;font-size:18px;line-height:100%;padding-top:20px;padding-bottom:10px;padding-left:20px;padding-right:20px">
+                                                    <em>{{ order.entity.address }}</em>
+                                                    <br><br>
+                                                    <em>{{ order.entity.town }}, {{ order.entity.zipcode }}</em>
+                                                    <br><br>
+                                                    <em>{{ order.entity.phone }}</em>
+                                                  </td>
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td align="center" valign="top" colspan="2" style="padding:5px">
+                                              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
+                                                <tbody>
+                                                <tr>
+                                                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248emailCalendarMonth" style="background-color:#000;color:#fff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;padding-top:10px;padding-bottom:10px;text-align:center">
+                                                    {{ 'order_reference'|trans({'%reference%': order.reference}, 'email', 'en') }}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248emailCalendarMonth" style="background-color:#000;color:#fff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;padding-top:10px;padding-bottom:10px;text-align:center">
+                                                    {{ 'order_reference'|trans({'%reference%': order.reference}, 'email', 'ar') }}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="m_-4735198323048866632m_7440328756943660248emailCalendarContent" style="color:#333;font-family:Helvetica,Arial,sans-serif;font-size:24px;line-height:100%;padding-top:20px;padding-left:20px;padding-right:20px">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
+                                                      <thead>
+                                                      <tr align="center" valign="top"  >
+                                                        <td colspan="3" style="font-size:14px">
+                                                            {{ order.validatedAt }}
+                                                          <br><br>
+                                                        </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left">{{ 'order_quantity_label'|trans({}, 'email', 'en') }}</th>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Center">{{ 'order_item_label'|trans({}, 'email', 'en') }}</th>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Center">{{ 'order_slot_label'|trans({}, 'email', 'en') }}</th>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;width:90px">{{ 'item_price'|trans({}, 'email', 'en') }}</th>
+                                                      </tr>
+                                                      <tr>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left">{{ 'order_quantity_label'|trans({}, 'email', 'ar') }}</th>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Center">{{ 'order_item_label'|trans({}, 'email', 'ar') }}</th>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Center">{{ 'order_slot_label'|trans({}, 'email', 'ar') }}</th>
+                                                        <th class="m_-4735198323048866632m_7440328756943660248headContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;width:90px">{{ 'item_price'|trans({}, 'email', 'ar') }}</th>
+                                                      </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                      <tr>
+                                                        <td valign="top" class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                                        </td>
+                                                        <td class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                                        </td>
+                                                        <td valign="top" class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                                        </td>
+                                                      </tr>
+                                                      {% for item in order.items %}
+                                                        <tr>
+                                                          <td valign="top" class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                                              {{ item.qty }}
+                                                          </td>
+                                                          <td class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:center;padding-bottom:20px">
+                                                            {% if loop.first %}
+                                                              {{ item.product is defined ? item.product.label : '-' }}
+                                                            {% else %}
+                                                              {{ 'order_discount'|trans({}, 'email', 'en') }}<br>{{ 'order_discount'|trans({}, 'email', 'ar') }}
+                                                            {% endif %}
+                                                          </td>
+                                                          <td>
+                                                            {% if loop.first %}
+                                                              {{ order.startedAt|date('Y-m-d h:i A') }}
+                                                            {% else %}
+                                                              -
+                                                            {% endif %}
+                                                          </td>
+                                                          <td valign="top" class="m_-4735198323048866632m_7440328756943660248textContent" style="color:#404040;font-family:Helvetica;font-size:16px;line-height:125%;text-align:Left;padding-bottom:20px">
+                                                              {{ item.priceTtc|number_format(2, ',', ' ') }}
+                                                          </td>
+                                                        </tr>
+                                                      {% endfor %}
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td align="center" valign="top" colspan="2" style="padding:5px;">
+                                              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
+                                                <tbody>
+                                                <tr>
+                                                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248emailCalendarMonth" style="background-color:#000;color:#fff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;padding-top:10px;padding-bottom:10px;text-align:center">
+                                                    {{ 'order_total'|trans({}, 'email', 'en') }}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248emailCalendarMonth" style="background-color:#000;color:#fff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;padding-top:10px;padding-bottom:10px;text-align:center">
+                                                    {{ 'order_total'|trans({}, 'email', 'ar') }}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248emailCalendarPrice" style="color:#333;font-family:Helvetica,Arial,sans-serif;font-size:30px;font-weight:bold;line-height:100%;padding-top:20px;padding-bottom:20px;text-align:center">
+                                                    {{ order.entity.currency }} {{ order.totalTtc|number_format(2, ',', ' ') }}
+                                                  </td>
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+  <table border="0" cellpadding="0" cellspacing="0" width="565" align="center" style="border-collapse:collapse">
+    <tbody>
+    <tr>
+      <td align="left" valign="top">
+        <table border="0" cellpadding="0" cellspacing="0" width="565" class="m_-4735198323048866632m_7440328756943660248flexibleContainer" style="border-collapse:collapse">
+          <tbody>
+          <tr>
+            <td align="left" valign="top" width="565" class="m_-4735198323048866632m_7440328756943660248flexibleContainerCell m_-4735198323048866632m_7440328756943660248bottomShim" style="padding-top:0;padding-right:0;padding-left:0;padding-bottom:20px">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-4735198323048866632m_7440328756943660248nestedContainer" style="border-collapse:collapse;background-color:#ffffff;border:0 solid #ccc">
+                <tbody>
+                <tr>
+                  <td align="center" valign="top" class="m_-4735198323048866632m_7440328756943660248nestedContainerCell" style="padding-top:20px;padding-right:20px;padding-left:20px">
+                    <img src="/image/qr_code.png" style="border:0;outline:none;text-decoration:none" class="CToWUd" height="120" width="120">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,8 @@
+vendor/
+.composer.env
+docker-compose.override.yml
+docker-compose.yml
+.idea/
+marketplace/yarn-error.log
+.DS_Store
+

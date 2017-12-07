@@ -1,0 +1,69 @@
+version: '2'
+
+services:
+    proxy:
+        ports:
+            - 80:80
+            - 443:443
+
+    api:
+        ports:
+            - 4430:443
+            - 8000:80
+        environment:
+            VIRTUAL_HOST: api
+        volumes:
+            - /Users/username/.ssh/id_rsa:/root/.ssh/id_rsa
+            - /Users/username/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+
+    marketplace:
+        ports:
+            - 4431:443
+            - 8001:80
+        environment:
+            VIRTUAL_HOST: marketplace.docker
+        volumes:
+            - /Users/username/.ssh/id_rsa:/root/.ssh/id_rsa
+            - /Users/username/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+
+    bo:
+        ports:
+            - 8005:80
+        environment:
+            VIRTUAL_HOST: bo.dev
+        volumes:
+            - /Users/username/.ssh/id_rsa:/root/.ssh/id_rsa
+            - /Users/username/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+
+    wynd_pos:
+        ports:
+            - 8004:80
+
+    mail:
+        ports:
+            - 1080:80
+        environment:
+            VIRTUAL_HOST: mail.docker
+
+    elasticsearch:
+        ports:
+            - 9300:9300
+            - 9200:9200
+        environment:
+            VIRTUAL_HOST: es.docker
+
+    database:
+        ports:
+            - 3306:3306
+
+    redis:
+        ports:
+            - 6379:6379
+        environment:
+              VIRTUAL_HOST: redis.docker
+
+    phpmyadmin:
+        ports:
+            - 8082:80
+        environment:
+            VIRTUAL_HOST: phpmyadmin.docker

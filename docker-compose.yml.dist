@@ -1,0 +1,91 @@
+version: '2'
+services:
+    proxy:
+        image: jwilder/nginx-proxy
+        container_name: proxy.fc
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./docker/php70-apache/certs:/etc/nginx/certs
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        environment:
+            CERT_NAME: api.docker
+        env_file: api/.env
+
+    api:
+        build: docker/php70-apache
+        image: project/api
+        container_name: api
+        networks:
+            - default
+        depends_on:
+            - database
+        environment:
+            VIRTUAL_HOST: api.dev
+        volumes:
+            - ./api:/var/www/app
+
+    database:
+        image: mariadb:10.1
+        container_name: database
+        networks:
+            - default
+        volumes:
+            - database:/var/lib/mysql:rw
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: wynd_api
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        networks:
+            - default
+        depends_on:
+            - database
+        environment:
+            VIRTUAL_HOST: phpmyadmin.dev
+            MYSQL_ROOT_PASSWORD: root
+            PMA_HOST: database
+
+    elasticsearch:
+        image: elasticsearch:5
+        container_name: elasticsearch
+        networks:
+            - default
+        environment:
+            VIRTUAL_HOST: elasticsearch.dev
+
+    bo:
+        build: docker/php70-apache
+        image: project/bo
+        container_name: bo.dev
+        networks:
+            - default
+        environment:
+            VIRTUAL_HOST: bo.dev
+        volumes:
+            - ./bo:/var/www/app
+
+    redis:
+        image: redis
+
+    mail:
+        image: djfarrelly/maildev
+        container_name: mail
+        networks:
+            - default
+        environment:
+            VIRTUAL_HOST: mail.dev
+
+    wait:
+        image: martin/wait
+        networks:
+            - default
+
+networks:
+    default: {}
+
+volumes:
+    database: {}

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>JUMBLE</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <!-- font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700">
+  <!--  General CSS  -->
+  <style type="text/css">
+    body[yahoo] {
+      font-family: 'Noto Sans', arial, serif;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      /*letter-spacing: 1px;*/
+      -webkit-font-smoothing: antialiased;
+      mso-margin-top-alt: 0px;
+      mso-margin-bottom-alt: 0px;
+      mso-padding-alt: 0px 0px 0px 0px;
+      background: #fff;
+    }
+
+    body[yahoo] .copyrights {
+      margin-left: 12%;
+    }
+
+    body[yahoo] .logo__fb {
+      margin-top: -8px;
+      margin-left: 30px;
+      vertical-align: middle;
+    }
+
+    body[yahoo] .table__ticket {
+      border-style: solid;
+      border-width: 1px;
+      border-color: #b2b2b2;
+      margin-bottom: 25px;
+      margin-top: 20px;
+      width: 70%;
+    }
+
+    body[yahoo] .table__ticket--separator {
+      border-style: solid;
+      border-width: 1px 0 0;
+      border-color: #b2b2b2;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    @media only screen and (max-width: 990px) {
+      body[yahoo] .hide-mobile {
+        display: none !important;
+      }
+    }
+
+    @media only screen and (max-width: 640px) {
+      body[yahoo] .copyrights {
+        margin-bottom: 20px;
+        margin-left: 0;
+      }
+
+      body[yahoo] .logo__fb {
+        margin: 20px auto 0;
+        display: block;
+      }
+
+      body[yahoo] .copyrights {
+        display: block;
+        margin-bottom: 20px;
+        margin-left: 0;
+        text-align: center;
+      }
+
+      body[yahoo] .table__ticket {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body yahoo="fix">
+{% trans_default_domain "email" %}
+<table cellpadding="10" cellspacing="0" border="0" width="100%" border-collapse="collapse" bgcolor="#fff">
+  <tr>
+    <td>
+      <!-- email header -->
+      <table border="0" cellpadding="40" cellspacing="0" width="100%" border-collapse="collapse">
+        <tr>
+          <td width="20%" height="10" class="hide-mobile">&nbsp;</td>
+          <td width="60%" align="center" bgcolor="#000">
+            <img src="data:image/png;base64,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" alt="Alt" border="0" width="200"/><br/>
+          </td>
+          <td width="20%" height="10" class="hide-mobile">&nbsp;</td>
+        </tr>
+      </table>
+      <!-- /email header -->
+
+      <!-- email main content -->
+      {% block emailContent %}{% endblock %}
+      <!-- /email main content -->
+
+      <!-- email footer -->
+      <table border="0" cellpadding="40" cellspacing="0" width="100%" border-collapse="collapse">
+        <tr>
+          <td width="20%" height="10" class="hide-mobile">&nbsp;</td>
+          <td width="60%" bgcolor="#000">
+            <strong class="copyrights"><font size="2" color="#fff">Email</font></strong>
+            <a href="https://fr-fr.facebook.com/poivrerougefrance/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAM8SURBVEiJxZdLaJxVFMd/535fHibpMDax0FKMJKHOYlbVTUYD1UVAKA1dDDGKKLV0GktqK1VxIczGVxRRjKYRcaHGPLqQaGqhO8lMEpDis4JDIzKh03aRcdomadJJvuPCPKbRdO7EMf5359zzP7/LvXwf5woWCocHnUvOVJOKtACNoHUgfkCBPwSdABNbVBkaC6TGiUa9fD3ldovNT3xSOb0wc0yQ40C1zSaBy6h2+q5mPzhz5uh8weAHH+15TEXfArZbAtfqdzHaEettH7YCh8ODzkUn/YoIL24QmCtVpXO0P/ISiK4LDocHnZSbPgXsLwJ0lY58PNoXeTo3Z3KDi+7UG8WGAgh6INTW/cKtuSUt3WlvsaE58tSTR0YHImdXwI3ht+9w3IqEwk7bLjV3VtB03z1sq67CGCGZynD6m1/z2RJzWyR47sNI1gUwJZUnVNUaGqi7i66X91Fe5q7kxr+ftAHvKr/uHQB6zJ49URfVZ22hAE/t330LtCCpOQHgZndsb0LV9ucAQEPtannXZ2NcmZomffWGnVm0IdTaHXRR3VcIFKC8tASAzLU5+r/+sVA7GFpcgZDmLwXg1ePNNNRW46sqA8BXVcbgO20AnI1f4KNT31pypdFVqLPdaM3WSnZs8602MLISX5ues22DQr0L+PJWLmn2RpbrM/NUVZQhAp4qM7M3AfhtMm0NBvzyQNvJeaC0ENfwySfx+8qZyszS8synhViXpCkDZDbg/JeSjAEm/gfwBSPIyKZzVUfMosrQZnNFzZdmLJAaBy5tIvd8bOBQwhCNeqi+uWlY0dcAXIDMYvX7fjd9BKi38Xb1jlFa4jB/c6FQ7A/xXVf6IHcQeLx7r3oyxJqppIjKGqMPjfS2xwGc5Wzyp9OJ2uBeD+Hh/4arR2Kft3+xHDm5S8mfvxq5O3huJ8LuYiIF6Yz3HX49N7fmWEXj/YcPinAMyPsasNCCwtFYX+Rvo/K6A32otadZjL4LBDYI/c4Y7Vi+07Vy/ikJMHl+eKK+5v4eb0tlCjUBhK2WwF8Unhu993JH8r3nk+sV3fbtlKtQa3cQQ4tBGvWvz84PqCAZVU0gEhdPhmIDhxI2/f4E78EXV7DL65gAAAAASUVORK5CYII=" alt="Alt" border="0" width="40" class="logo__fb" /></a>
+          </td>
+          <td width="20%" height="10" class="hide-mobile">&nbsp;</td>
+        </tr>
+      </table>
+      <!-- /email footer -->
+    </td>
+  </tr>
+</table>
+</body>
+</html>

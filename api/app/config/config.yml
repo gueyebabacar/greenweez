@@ -1,0 +1,225 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: elastica.yml }
+    - { resource: services.yml }
+
+framework:
+    cache:
+        app: app.cache.system.array
+        system: app.cache.system.array
+    annotations:
+        cache: app.cache.annotations.array
+    secret: test
+    validation:
+        enable_annotations: true
+        cache: app.cache.mapping.array
+    default_locale: en
+    translator: { fallback: en }
+#    serializer:
+#        enabled: true
+    test: ~
+    profiler:
+        enabled: true
+        collect: true
+    templating:
+        engines: ["twig"]
+
+twig:
+    strict_variables: true
+    globals:
+        url_marketplace: "%url_marketplace%"
+        url_api: "%url_api%"
+        swagger_url_validator: "%swagger_url_validator%"
+
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_username%"
+    password:  "%mailer_password%"
+    port: "%mailer_port%"
+    encryption: "%mailer_encryption%"
+    auth_mode: "%mailer_auth_mode%"
+    spool:     { type: memory }
+
+doctrine:
+    dbal:
+        #driver: ''
+        host:     "%env(DATABASE_HOST)%"
+        port:     "%env(DATABASE_PORT)%"
+        dbname:   "%env(DATABASE_DB)%"
+        user:     "%env(DATABASE_USER)%"
+        password: "%env(DATABASE_PASSWORD)%"
+        charset:  UTF8
+        mapping_types:
+            enum: string
+        server_version: 5.6
+    orm:
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_generate_proxy_classes: true
+        auto_mapping: true
+        dql:
+            numeric_functions:
+                acos: DoctrineExtensions\Query\Mysql\Acos
+                asin: DoctrineExtensions\Query\Mysql\Asin
+                atan2: DoctrineExtensions\Query\Mysql\Atan2
+                atan: DoctrineExtensions\Query\Mysql\Atan
+                cos: DoctrineExtensions\Query\Mysql\Cos
+                cot: DoctrineExtensions\Query\Mysql\Cot
+                round: DoctrineExtensions\Query\Mysql\Round
+                sin: DoctrineExtensions\Query\Mysql\Sin
+                tan: DoctrineExtensions\Query\Mysql\Tan
+                DISTANCE: WyndApi\WyndApiCoreBundle\Doctrine\Functions\DistanceFunction
+            string_functions:
+                degrees: DoctrineExtensions\Query\Mysql\Degrees
+                radians: DoctrineExtensions\Query\Mysql\Radians
+                date_format: DoctrineExtensions\Query\Mysql\DateFormat
+            datetime_functions:
+                HOUR: DoctrineExtensions\Query\Mysql\Hour
+        filters:
+            entity_filter:
+                class: WyndApi\WyndApiCoreBundle\Filter\EntityFilter
+                enabled: true
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+    organize_migrations: false
+
+stof_doctrine_extensions:
+    default_locale: fr
+    translation_fallback: true
+    orm:
+        default:
+            sluggable: true
+            sortable: true
+
+# FOSRest Configuration
+fos_rest:
+    format_listener:
+        rules:
+            - { path: ^/, priorities: [ json, xml, html ], fallback_format: json, prefer_extension: true }
+    serializer:
+        serialize_null: true
+    body_converter:
+        enabled: true
+        validate: true
+        validation_errors_argument: validationErrors
+
+    body_listener:
+        enabled: true
+    param_fetcher_listener: true
+    view:
+        formats:
+            json: true
+            xml: true
+            html: true
+        view_response_listener: "force"
+    exception:
+        enabled: true
+        codes:
+            WyndApi\WyndApiCoreBundle\Exception\ValidationException: 400
+        messages:
+            WyndApi\WyndApiCoreBundle\Exception\ValidationException: true
+
+monolog:
+    channels: ["api", "wyndt"]
+    handlers:
+        app:
+            type: stream
+            level: debug
+            path: "%kernel.logs_dir%/api.%kernel.environment%.log"
+            channels: ["!api", "!wyndt"]
+        api:
+            type: stream
+            level: debug
+            path: "%kernel.logs_dir%/api.%kernel.environment%.log"
+            channels: api
+        wyndt:
+            type: stream
+            level: debug
+            path: "%kernel.logs_dir%/wyndt.%kernel.environment%.log"
+            channels: wyndt
+        console:
+            type: console
+            process_psr_3_messages: false
+            channels: ['!event', '!doctrine', '!console']
+            verbosity_levels:
+                VERBOSITY_NORMAL: INFO
+
+lexik_jwt_authentication:
+    private_key_path: "%jwt_private_key_path%"
+    public_key_path: "%jwt_public_key_path%"
+    pass_phrase: "%jwt_pass_phrase%"
+    token_ttl: "%token_ttl%"
+
+# Pagination configuration
+knp_paginator:
+    page_range: "%default_pagination_range%"
+    default_options:
+       sort_field_name: ~ # Disable sorting
+
+# Swagger UI Documentation page
+al_swagger_ui:
+    resource_list: indexdocumentation
+    auth_config:
+        http:
+            enable:   true
+            key_name: Authorization
+            delivery: header
+    js_config:
+        sorter: "alpha"
+
+services:
+    app.cache.system.array:
+        class: Symfony\Component\Cache\Adapter\ArrayAdapter
+        arguments: ["", ""]
+        tags:
+            - { name: cache.pool, clearer: cache.default_clearer }
+
+    app.cache.annotations.array:
+        class: Doctrine\Common\Cache\ArrayCache
+        calls:
+            - ["setNamespace", ["annotations"]]
+
+    app.cache.serializer.array:
+        class: Doctrine\Common\Cache\ArrayCache
+        calls:
+            - ["setNamespace", ["serializer"]]
+
+    app.cache.validation.array:
+        class: Doctrine\Common\Cache\ArrayCache
+        calls:
+            - ["setNamespace", ["serializer"]]
+
+    app.cache.mapping.array:
+        class: Symfony\Component\Validator\Mapping\Cache\DoctrineCache
+        arguments: ["@app.cache.validation.array"]
+
+lexik_maintenance:
+    authorized:
+        ips: ["127.0.0.1"]
+
+    driver:
+        ttl: 3600
+
+        class: "\\Lexik\\Bundle\\MaintenanceBundle\\Drivers\\FileDriver"
+        options: { file_path: "%kernel.root_dir%/../var/cache/lock" }
+
+    response:
+        code: 503
+        status: "Service Temporarily Unavailable"
+
+app:
+    wynd_api:
+        stock_enabled: false
+        wynd_resolve_target_entities:
+            WyndApi\WyndApiCoreBundle\Entity\Order\OrderInterface: ApiBundle\Entity\Order
+            WyndApi\WyndApiCoreBundle\Entity\ProductInterface: ApiBundle\Entity\Product
+            WyndApi\WyndApiCoreBundle\Entity\EntityInterface: ApiBundle\Entity\Entity
+
+wynd_booking_api:
+    booking_resolve_target_entities:
+        WyndApi\WyndApiCoreBundle\Entity\Order\OrderInterface: ApiBundle\Entity\Order

@@ -1,0 +1,22 @@
+api:
+    resource: "@WyndApiCoreBundle/Controller/"
+    type:     rest
+    prefix:   "/api"
+
+api_booking:
+    resource: "@WyndBookingApiBundle/Controller/"
+    type:     rest
+    prefix:   "/api"
+
+api_descriptor:
+    resource: '@WyndApiDescriptorBundle/Resources/config/routing.yml'
+    prefix:   "/api"
+
+al_swagger_ui:
+    resource: "@ALSwaggerUIBundle/Resources/config/routing.yml"
+    prefix:   /documentation
+
+api_greenweez:
+    resource: "@ApiBundle/Controller/"
+    prefix:   "/api"
+    type:     rest

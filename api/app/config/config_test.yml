@@ -1,0 +1,33 @@
+imports:
+    - { resource: config_dev.yml }
+
+security:
+    encoders:
+        WyndApi\WyndApiCoreBundle\Entity\ApiUser:
+            algorithm: plaintext
+            ignore_case: false
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+fos_elastica:
+    indexes:
+        serialization:
+            index_name: "api_starter_test"
+
+services:
+    ApiBundle\Manager\OrderManager:
+        parent: 'api.order_manager'
+        public: true
+        synthetic: true

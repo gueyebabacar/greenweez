@@ -1,0 +1,95 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+parameters:
+
+    # Mailing configuration
+    mail_from: contact@wynd.fr
+    mail_from_author: 'Contact wynd'
+
+    dolibarr_url: ~
+    url_marketplace: ~
+    url_api: ~
+
+    basket_maximum_default: 10
+
+    cloudinary:
+        cloud_name: dcphm6bor
+        api_key: '389376578864236'
+        api_secret: uP7IzvuRu2d5thpz3IANkgR75Lg
+    jms_serializer.doctrine_object_constructor.class: WyndApi\WyndApiCoreBundle\Serializer\Metadata\DoctrineObjectConstructor
+    default_customer_id: 1
+
+    # Swagger validation url container
+    swagger_url_validator: https://online.swagger.io
+    swagger_host: api.starter.docker
+
+    #wynd_slot_destinations:
+    #   - booking
+
+    elasticsearch_index_name: "%env(ELASTICSEARCH_INDEX_NAME)%"
+
+    # default values
+    env(DATABASE_HOST):     database
+    env(DATABASE_PORT):     3306
+    env(DATABASE_USER):     root
+    env(DATABASE_PASSWORD): root
+    env(DATABASE_DB):       wynd_api
+    env(ELASTICSEARCH_URL): http://elasticsearch:9200
+    env(ELASTICSEARCH_HOST): http://elasticsearch
+    env(ELASTICSEARCH_PORT): 9200
+    env(ELASTICSEARCH_INDEX_NAME): api_starter
+
+    wynd_slot_destinations:
+        - booking
+
+    stock_enabled: false
+    order_stock_type_from: 1
+    order_stock_type_to: 3
+    order_movement_type: 3
+    invoice_stock_type_from: 3
+    invoice_stock_type_to: 4
+    invoice_movement_type: 2
+
+    is_catering: false
+    wyndpay_url: ~
+
+    # JWT Token
+
+    jwt_private_key_path: '%kernel.root_dir%/var/jwt/private.pem'
+    jwt_public_key_path: '%kernel.root_dir%/var/jwt/public.pem'
+    jwt_pass_phrase: wynd
+    jwt_token_ttl: 86400
+    token_ttl: 86400
+
+    #logo
+    email_header_logo: '%kernel.root_dir%/Resources/assets/no-factory/image/logo-lg.png'
+    email_footer_logo: '%kernel.root_dir%/Resources/assets/no-factory/image/icon-fb.svg'
+
+    #mailer
+    mailer_host: smtp.mandrillapp.com
+    mailer_transport: smtp
+    mailer_username: Nexence
+    mailer_password: 5ydvzryYFNUqL25exzp_7A
+    mailer_port: 587
+    mailer_encryption: tls
+    mailer_auth_mode: login
+    kitchen_ticket_path: ""
+
+    orders_directory: '%kernel.project_dir%/var/export/order'
+
+    max_upsell_products: 5
+
+
+    kitchen_ticket_path: ""
+    forgot_password.hours_until_token_expiration: 24
+
+    wynd_slot_destinations:
+        - delivery
+
+    default_pagination_range: 50
+
+    # If synchronization is enabled, these are used to connect to the master server
+    wynd_api.entity: 1
+    wynd_api.master.url: http://central/app_dev.php
+    wynd_api.master.username: admin_api
+    wynd_api.master.password: test

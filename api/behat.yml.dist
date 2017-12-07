@@ -1,0 +1,23 @@
+default:
+    suites:
+        project: &base_suite
+            paths: [ '%paths.base%/features' ]
+            filters:
+                tags: "~@skip"
+            contexts:
+                - WyndApiContext:
+                    baseUrl: 'http://api/app_test.php'
+                    authenticator: '@lexik_jwt_authentication.encoder'
+                - ApiContext
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: vendor/autoload.php
+                path: app/MicroKernel.php
+                class: MicroKernel
+                env: test
+                debug: false
+        Behat\WebApiExtension: ~
+        Knp\FriendlyContexts\Extension:
+            api:
+                base_url: 'http://api/app_test.php'

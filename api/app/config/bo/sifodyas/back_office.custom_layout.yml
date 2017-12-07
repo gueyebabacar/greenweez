@@ -1,0 +1,130 @@
+imports:
+    - { resource: actions/invoice/sendByMail.yml }
+    - { resource: actions/discount/generatePromoCode.yml }
+#    - { resource: actions/export.yml }
+
+back_office:
+    custom_layout:
+        default:
+            format: "-"
+            icon: circle-o-notch
+            form_tooltip: true
+            sidebar_collapsed: false
+            main_color: "61B8F2"
+            logo:
+#                text: false
+                text:
+                    lg: "Wynd<b>BO</b>"
+                    sm: "<b>B</b>O"
+                # start with:
+                # '/' for mellisuge/web/*
+                # 'http' or 'https' for external
+                # nothing for mellisuge/app/Resources/assets/images/
+                path:
+                    lg: "logo_large.png"
+                    sm: "logo_small.png"
+
+        rules:
+            - if:
+                for:
+                    - entity: invoice
+                      mode: [Read]
+              then:
+#                entity#*:
+#                    action: export
+                entity#invoice:
+                    action: invoice_sendByMail
+            - if:
+                for:
+                    - entity: discount
+                      mode: [Read]
+              then:
+#                entity#*:
+#                    action: export
+                entity#discount:
+                    action: discount_generatePromoCode
+            - if:
+                for:
+                    - entity: "*"
+                      mode: [Create, Edit]
+              then:
+                entity#*:
+                    attribute: [id, rowid, created_at, updated_at]
+                    is: not visible
+            - if:
+                for:
+                    - entity: "*"
+                      mode: [Create, Edit]
+              then:
+                entity#*:
+                    attribute: entity
+                    is: read only
+            - if:
+                for:
+                    - route: "*"
+              then:
+                route#entities:
+                    icon: building
+                route#users:
+                    icon: id-card
+                route#tags:
+                    icon: tag
+                route#types:
+                    icon: tags
+                route#customers:
+                    icon: user-circle-o
+                route#products:
+                    icon: product-hunt
+                route#categories:
+                    icon: folder-open
+                route#orders:
+                    icon: shopping-basket
+                route#invoices:
+                    icon: file-text
+                route#destinations:
+                    icon: arrows-alt
+                route#resources:
+                    icon: calendar
+                route#bank-accounts:
+                    icon: university
+                route#divisions:
+                    icon: dot-circle-o
+                route#wyndt:
+                    icon: wifi
+                route#cohorts:
+                    icon: users
+                route#discounts:
+                    icon: eur
+                route#booking:
+                    icon: cutlery
+                route#pricelists:
+                    icon: list
+                route#pricelistprices:
+                    icon: money
+                route#productgroups:
+                    icon: object-group
+                route#closedresources:
+                    icon: times-circle-o
+                route#iframewynd:
+                    icon: bar-chart
+                route#slot-management:
+                    icon: clock-o
+                    subroutes:
+                       - name: Semaine type
+                         url: template
+                         title: Semaine type
+            - if:
+                for:
+                    - route: "*"
+                    - user: "*"
+                      role: "!ROLE_MANAGER"
+              then:
+                route#*:
+                    is: read only
+            - if:
+                for:
+                    - route: [pos-config, point-of-sale]
+                      as: config-routes-alias
+              then:
+                route#config-routes-alias:
+                    mode: plain object

@@ -1,0 +1,7 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    profiler: { only_exceptions: false }
+    ide: "phpstorm://open?file=%%f&line=%%l"
+

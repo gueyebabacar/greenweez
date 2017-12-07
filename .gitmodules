@@ -1,0 +1,4 @@
+[submodule "bo"]
+	path = bo
+	url = git@gitlab.wynd.eu:wynd-product/bo/externe.git
+    branch = master

@@ -1,0 +1,4352 @@
+{
+  "routes": [
+    {
+      "route_label": "Mes entités",
+      "route_name": "entities",
+      "entities": [
+        {
+          "type": "Entity",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": false,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+        {
+          "route_label": "Mes destinations",
+          "route_name": "destinations",
+          "entities": [
+            {
+              "type": "Destination",
+              "creatable": true,
+              "editable": true,
+              "listable": true,
+              "deletable": true,
+              "duplicatable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route_label": "Mon entité",
+      "route_name": "point-of-sale",
+      "entities": [
+        {
+          "type": "PointOfSale",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": false,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+
+      ]
+    },
+    {
+      "route_label": "Mes utilisateurs",
+      "route_name": "users",
+      "entities": [
+        {
+          "type": "User",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": true,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+
+      ]
+    },
+    {
+      "route_label": "Mes clients",
+      "route_name": "customers",
+      "entities": [
+        {
+          "type": "Customer",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": false,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+        {
+          "route_label": "Mes cohortes",
+          "route_name": "cohorts",
+          "entities": [
+            {
+              "type": "Cohort",
+              "creatable": true,
+              "editable": true,
+              "listable": true,
+              "deletable": true,
+              "duplicatable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route_label": "Mes beepers",
+      "route_name": "beepers",
+      "entities": [
+        {
+          "type": "Beeper",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": true,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+
+      ]
+    },
+    {
+      "route_label": "Mes commandes",
+      "route_name": "orders",
+      "entities": [
+        {
+          "type": "Order",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": false,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+
+      ]
+    },
+    {
+      "route_label": "Products",
+      "route_name": "products",
+      "entities": [
+        {
+          "type": "Product",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": true,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+        {
+          "route_label": "Prices",
+          "route_name": "prices",
+          "entities": [
+            {
+              "type": "Price",
+              "creatable": true,
+              "editable": true,
+              "listable": true,
+              "deletable": true,
+              "duplicatable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route_label": "Discounts",
+      "route_name": "discounts",
+      "entities": [
+        {
+          "type": "Discount",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": true,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+        {
+          "route_label": "Promo Codes",
+          "route_name": "codes",
+          "entities": [
+            {
+              "type": "CodePromo",
+              "creatable": true,
+              "editable": true,
+              "listable": true,
+              "deletable": true,
+              "duplicatable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route_label": "Slot management",
+      "route_name": "slot-management",
+      "entities": [
+        {
+          "type": "SlotManagement",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": true,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+        {
+          "route_label": "Calendars",
+          "route_name": "resources",
+          "entities": [
+            {
+              "type": "Resource",
+              "creatable": true,
+              "editable": true,
+              "listable": true,
+              "deletable": true,
+              "duplicatable": false
+            }
+          ]
+        },
+        {
+          "route_label": "Closed resources",
+          "route_name": "closed_resource",
+          "entities": [
+            {
+              "type": "ClosedResource",
+              "creatable": true,
+              "editable": true,
+              "listable": true,
+              "deletable": true,
+              "duplicatable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route_label": "Mon dashboard",
+      "route_name": "iframewynds",
+      "entities": [
+        {
+          "type": "IFrameWynd",
+          "creatable": true,
+          "editable": true,
+          "listable": true,
+          "deletable": true,
+          "duplicatable": false
+        }
+      ],
+      "subroutes": [
+
+      ]
+    }
+  ],
+  "entities": {
+    "Entity": {
+      "label": "Entity",
+      "class": "Entity",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/entities",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/entities",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/entities/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/entities/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Reference",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "town": {
+          "name": "Town",
+          "type": "string",
+          "category": "Contact",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "zip": {
+          "name": "ZIP code",
+          "type": "string",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "address": {
+          "name": "Adress",
+          "type": "string",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "phone": {
+          "name": "Phone",
+          "type": "string",
+          "category": "Contact",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "mail": {
+          "name": "Mail",
+          "type": "string",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "website": {
+          "name": "Website",
+          "type": "string",
+          "variant": "markdown",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "latitude": {
+          "name": "Latitude",
+          "type": "number",
+          "variant": "float",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "longitude": {
+          "name": "Longitude",
+          "type": "number",
+          "variant": "float",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "name": {
+          "name": "Name",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "description": {
+          "name": "Description",
+          "type": "text",
+          "variant": "html",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "external_id": {
+          "name": "External ID",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "photo": {
+          "name": "URL image",
+          "type": "file",
+          "variant": "image",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "logo": {
+          "name": "URL Logo",
+          "type": "file",
+          "variant": "image",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "datec": {
+          "name": "Creation date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "tms": {
+          "name": "Modification date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "visible": {
+          "name": "Visible",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "active": {
+          "name": "Active",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_print_qrcode": {
+          "name": "Impression QR Code",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "tags": {
+          "name": "Tags",
+          "type": "Entity[]",
+          "variant": "Tag",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "destination": {
+          "name": "Destinations",
+          "type": "Entity[]",
+          "variant": "Destination",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "capital": {
+          "name": "Capital",
+          "type": "number",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_rcs": {
+          "name": "RCS Code",
+          "type": "string",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_siret": {
+          "name": "SIRET Code",
+          "type": "string",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_siren": {
+          "name": "SIREN Code",
+          "type": "string",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_ape": {
+          "name": "APE Code",
+          "type": "string",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vat_number": {
+          "name": "VAT Number",
+          "type": "string",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "legal_form": {
+          "name": "Terms and Conditions",
+          "type": "string",
+          "category": "Société",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "PointOfSale": {
+      "label": "Point Of Sale",
+      "class": "PointOfSale",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/entities/%selected_entity%",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/entities/%selected_entity%",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/entities/%selected_entity%",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/entities/%selected_entity%",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/entities/%selected_entity%",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Reference",
+          "type": "number",
+          "variant": "integer",
+          "category": "Global",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Global",
+          "primary": true,
+          "default": true,
+          "required": true,
+          "sortable": false
+        },
+        "town": {
+          "name": "Town",
+          "type": "string",
+          "category": "Contact",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "zip": {
+          "name": "ZIP Code",
+          "type": "string",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "address": {
+          "name": "Adress",
+          "type": "string",
+          "variant": "address",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "phone": {
+          "name": "Phone",
+          "type": "string",
+          "category": "Contact",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "mail": {
+          "name": "Mail",
+          "type": "string",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "website": {
+          "name": "Website",
+          "type": "string",
+          "variant": "markdown",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "latitude": {
+          "name": "Latitude",
+          "type": "number",
+          "variant": "float",
+          "category": "Contact",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "longitude": {
+          "name": "Longitude",
+          "type": "number",
+          "variant": "float",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "name": {
+          "name": "Name",
+          "type": "string",
+          "category": "Global",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "description": {
+          "name": "Description",
+          "type": "text",
+          "variant": "html",
+          "category": "Global",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "external_id": {
+          "name": "External ID",
+          "type": "string",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "wynd_pay_id": {
+          "name": "Wynd Pay ID",
+          "type": "string",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": true,
+          "sortable": false
+        },
+        "photo": {
+          "name": "URL image",
+          "type": "file",
+          "variant": "image",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "logo": {
+          "name": "URL Logo",
+          "type": "file",
+          "variant": "image",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Creation Date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_at": {
+          "name": "Modification Date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "visible": {
+          "name": "Visible",
+          "type": "boolean",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": true,
+          "sortable": false
+        },
+        "active": {
+          "name": "Active",
+          "type": "boolean",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": true,
+          "sortable": false
+        },
+        "is_print_qrcode": {
+          "name": "Impression QR Code",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "tags": {
+          "name": "Tags",
+          "type": "Entity[]",
+          "variant": "Tag",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "destination": {
+          "name": "Destinations",
+          "type": "Entity[]",
+          "variant": "Destination",
+          "category": "Global",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "capital": {
+          "name": "Capital",
+          "type": "number",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_rcs": {
+          "name": "RCS Code",
+          "type": "string",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_siret": {
+          "name": "SIRET Code",
+          "type": "string",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_siren": {
+          "name": "SIREN Code",
+          "type": "string",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code_ape": {
+          "name": "APE Code",
+          "type": "string",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vat_number": {
+          "name": "VAT Number",
+          "type": "string",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "legal_form": {
+          "name": "Terms and Conditions",
+          "type": "string",
+          "category": "Company",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "User": {
+      "label": "Users",
+      "class": "User",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/users",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/users",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/users/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/users/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/users/{id}",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "help_text": "L'identifiant utilisateur.",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entity",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "help_text": "L'entité associée, récupérée via son Entity id.",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "firstname": {
+          "name": "Firstname",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "lastname": {
+          "name": "Lastname",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "username": {
+          "name": "username",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": true,
+          "sortable": false
+        },
+        "password": {
+          "name": "Password",
+          "type": "string",
+          "variant": "password",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": true,
+          "sortable": false
+        },
+        "admin": {
+          "name": "Admin role",
+          "type": "boolean",
+          "category": "Général",
+          "help_text": "Donne le r\u00f4le d'édition supr\u00eame \u00e0 l'utilisateur.",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "email": {
+          "name": "Email",
+          "type": "string",
+          "variant": "email",
+          "category": "Général",
+          "help_text": "Un email plut\u00f4t sympa.",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "office_phone": {
+          "name": "Professional phone",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "statut": {
+          "name": "Status",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "photo": {
+          "name": "Photo",
+          "type": "file",
+          "variant": "image",
+          "category": "Général",
+          "help_text": "Une photo comme celle l\u00e0 : <a href='https://pbs.twimg.com/profile_images/29139742/hasselhoff-david-photo-xl-david-hasselhoff-6210194_400x400.jpg'>David</a>",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "barcode": {
+          "name": "barcode",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Created at",
+          "type": "date",
+          "variant": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_at": {
+          "name": "Updated at",
+          "type": "date",
+          "variant": "date",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "ref_ext": {
+          "name": "External reference",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Tag": {
+      "label": "Tags",
+      "class": "Tag",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/tags",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/tags",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/tags/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/tags/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "default_label": {
+          "name": "Libellé",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "description": {
+          "name": "Description",
+          "type": "text",
+          "variant": "html",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "picture_url": {
+          "name": "URL image",
+          "type": "file",
+          "variant": "image",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "type": {
+          "name": "Type de tags associés",
+          "type": "Entity.id",
+          "variant": "Type",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entities": {
+          "name": "Entités associées",
+          "type": "Entity.id[]",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Type": {
+      "label": "Types de tags",
+      "class": "Type",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/types",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/types",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/types/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/types/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "label": {
+          "name": "Libellé",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "tags": {
+          "name": "Tags associés",
+          "type": "Entity[]",
+          "variant": "Tag",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Customer": {
+      "label": "Customer",
+      "class": "Customer",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/customers",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/customers",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/customers/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/customers/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "login": {
+          "name": "Login",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "password": {
+          "name": "Password",
+          "type": "string",
+          "variant": "password",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "honorific_prefix": {
+          "name": "Honorific prefix",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "firstname": {
+          "name": "Firstname",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "lastname": {
+          "name": "Lastname",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "email": {
+          "name": "Email",
+          "type": "string",
+          "variant": "email",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "phone": {
+          "name": "Phone",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "birthdate": {
+          "name": "Birthdate",
+          "type": "date",
+          "variant": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_active": {
+          "name": "Active",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_guest": {
+          "name": "Guest",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "datec": {
+          "name": "Creation date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entity",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "original_entity": {
+          "name": "Original entity",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "comments": {
+          "name": "Comments",
+          "type": "text",
+          "variant": "html",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Order": {
+      "label": "Orders",
+      "class": "Order",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/orders",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/orders",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/orders/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/orders/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "reference": {
+          "name": "Reference",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Point of sale",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "customer": {
+          "name": "Customer",
+          "type": "Entity.id",
+          "variant": "Customer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "status": {
+          "name": "Status",
+          "type": "Entity",
+          "variant": "FakeStatus",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "total": {
+          "name": "Total",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Created at",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "user": {
+          "name": "User",
+          "type": "Entity.id",
+          "variant": "User",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "destination": {
+          "name": "Destination",
+          "type": "Entity.id",
+          "variant": "Destination",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "channel": {
+          "name": "Channel",
+          "type": "Entity",
+          "variant": "FakeChannel",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "order_number": {
+          "name": "Order number",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "beeper": {
+          "name": "Bipper",
+          "type": "Entity.id",
+          "variant": "Beeper",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_billed": {
+          "name": "Is billed",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "bank_account": {
+          "name": "Cashier machine",
+          "type": "Entity.id",
+          "variant": "BankAccount",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Category": {
+      "label": "Catégories",
+      "class": "Category",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/categories",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/categories",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/categories/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/categories/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Point de vente",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "default_label": {
+          "name": "Libellé",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "description": {
+          "name": "Description",
+          "type": "text",
+          "variant": "html",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "count_products": {
+          "name": "Nombre de produits",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "external_id": {
+          "name": "Référence externe",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "picture": {
+          "name": "Photo",
+          "type": "file",
+          "variant": "image",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_default": {
+          "name": "Par défaut?",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "sort": {
+          "name": "Ordre",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "parent": {
+          "name": "Catégorie parente",
+          "type": "Entity.id",
+          "variant": "Category",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "SlotManagement": {
+      "label": "Slot management",
+      "custom": [
+        "SlotManagementBundle"
+      ]
+    },
+    "ResaTable": {
+      "label": "Réservation de table",
+      "custom": [
+        "ResaTableBundle"
+      ]
+    },
+    "IFrameWynd": {
+      "label": "Dashboard",
+      "custom": [
+        "IFrameBundle"
+      ],
+      "parameters": {
+        "src": "https://thematicgroupe.bime.io/dashboard/8A289B308D512D6388C8DC9FA47DCDDD4B0C0744E422938A1CFF2403442EC201",
+        "name": "iframewynd",
+        "id": "iframewynd"
+      }
+    },
+    "Destination": {
+      "label": "Destinations",
+      "class": "Destination",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/destinations",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/destinations",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/destinations/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/destinations/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code": {
+          "name": "Code",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "is_active": {
+          "name": "Active",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Resource": {
+      "label": "Ressources",
+      "class": "Resource",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/resources",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/entities/1/resources",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/resources/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/resources/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "secable": {
+          "name": "Divisible",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entity",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "destinations": {
+          "name": "Destinations",
+          "type": "Entity[]",
+          "variant": "Destination",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "ClosedResource": {
+      "label": "Closed resources",
+      "class": "ClosedResource",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/resources/closed",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/entities/1/resources/closed",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/resources/closed/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/resources/closed/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/resources/closed/{id}",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "resource": {
+          "name": "Calendar",
+          "type": "Entity",
+          "variant": "Resource",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "date_time_start": {
+          "name": "Start date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "date_time_end": {
+          "name": "End date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Payment": {
+      "label": "Paiements",
+      "class": "Payment",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/payments",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/payments",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/payments/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/payments/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entité",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "amount": {
+          "name": "Montant",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "invoice": {
+          "name": "Facture associée",
+          "type": "Entity.id",
+          "variant": "Invoice",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "payment_method": {
+          "name": "Moyen de paiement",
+          "type": "Entity.id",
+          "variant": "FakePaymentMethod",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "bank_entry": {
+          "name": "Entrée comptable associée",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Créé le",
+          "type": "date",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_at": {
+          "name": "Mis \u00e0 jour le",
+          "type": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_by": {
+          "name": "Créé par",
+          "type": "Entity",
+          "variant": "User",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_by": {
+          "name": "Mis \u00e0 jour par",
+          "type": "Entity",
+          "variant": "User",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "BankAccount": {
+      "label": "Banques",
+      "class": "BankAccount",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/bank_accounts",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/bank_accounts",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/bank_accounts/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/bank_accounts/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "default_label": {
+          "name": "Libellé",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "reference": {
+          "name": "Référence",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "ip_address": {
+          "name": "Adresse IP",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "order_number_prefix": {
+          "name": "Préfixe commande",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "order_number_next": {
+          "name": "Numéro commande suivante",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entité",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "channel": {
+          "name": "Canal",
+          "type": "Entity.id",
+          "variant": "FakeChannel",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Créé le",
+          "type": "date",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_at": {
+          "name": "Mis \u00e0 jour le",
+          "type": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "BankEntry": {
+      "label": "Ecritures comptables",
+      "class": "BankEntry",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/bank_entries",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/bank_entries",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/bank_entries/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/bank_entries/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "default_label": {
+          "name": "Libellé",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "amount": {
+          "name": "Montant",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_by": {
+          "name": "Créé par",
+          "type": "Entity",
+          "variant": "User",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "comment": {
+          "name": "Commentaire",
+          "type": "string",
+          "variant": "html",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "bank_account": {
+          "name": "Banque associée",
+          "type": "Entity.id",
+          "variant": "BankAccount",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "payment_method": {
+          "name": "Moyen de paiement",
+          "type": "Entity.id",
+          "variant": "FakePaymentMethod",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Créé le",
+          "type": "date",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_at": {
+          "name": "Mis \u00e0 jour le",
+          "type": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Division": {
+      "label": "Divisions",
+      "class": "Division",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/divisions",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/divisions",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/divisions/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/divisions/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "default_label": {
+          "name": "Libellé",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entité",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "parent_division": {
+          "name": "Division parente",
+          "type": "Entity",
+          "variant": "Division",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_visible_on_KVS": {
+          "name": "Visible sur le KVS",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_visible_on_kitchen_ticket": {
+          "name": "Visible sur le ticket",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_decompilable": {
+          "name": "Décompilable",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "WyndT": {
+      "label": "Wynd Terminal",
+      "class": "WyndT",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/wyndt",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/wyndt",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/wyndt/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/wyndt/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "mac_address": {
+          "name": "Adresse MAC ou IMEI",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "url_dest": {
+          "name": "URL",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "webkey": {
+          "name": "Webkey",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "mode_use": {
+          "name": "Mode",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entité",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Créé le",
+          "type": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "updated_at": {
+          "name": "Mis \u00e0 jour le",
+          "type": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Price": {
+      "label": "Price",
+      "class": "Price",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/prices",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/prices",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/prices/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/prices/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/prices/{id}",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entity",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "product": {
+          "name": "Product",
+          "type": "Entity.id",
+          "variant": "Product",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "price_ttc": {
+          "name": "Price including tax",
+          "type": "number",
+          "variant": "double",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "price_ht": {
+          "name": "Pre tax price",
+          "type": "number",
+          "variant": "double",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vate_rate": {
+          "name": "VAT rate",
+          "type": "number",
+          "variant": "double",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "price_type": {
+          "name": "Price type",
+          "type": "Enum",
+          "variant": "AMOUNT, PERCENT",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "condition_type": {
+          "name": "Price condition",
+          "type": "Enum",
+          "variant": "ABSOLUTE, RELATIVE",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "valo_max": {
+          "name": "Max valorization",
+          "type": "number",
+          "variant": "double",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "condition": {
+          "name": "Condition",
+          "type": "FakeEntity",
+          "variant": "FakeConditionPrice",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Product": {
+      "label": "Product",
+      "class": "Product",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/products",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/products",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/products/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/products/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "default_label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "ref": {
+          "name": "Reference",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Point of sale",
+          "type": "Entity",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "description": {
+          "name": "Description",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "to_sell": {
+          "name": "To sell",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_upsell": {
+          "name": "Is upsell",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "categories": {
+          "name": "Categories",
+          "type": "Entity[]",
+          "variant": "Category",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "tags": {
+          "name": "Tags",
+          "type": "Entity[]",
+          "variant": "Tag",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "picture": {
+          "name": "Picture",
+          "type": "string",
+          "variant": "image",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "division": {
+          "name": "Division",
+          "type": "Entity",
+          "variant": "Division",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "type": {
+          "name": "Type",
+          "type": "Enum",
+          "variant": "menu, choice, product",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Created at",
+          "type": "date",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Beeper": {
+      "label": "Beeper",
+      "class": "Beeper",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/beepers",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/beepers",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/beepers/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/beepers/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Point of sale",
+          "type": "Entity",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": true
+        },
+        "number": {
+          "name": "Numéro",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeStatus": {
+      "label": "Status",
+      "class": "FakeStatus",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakestatus",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakestatus",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakestatus/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakestatus/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "code": {
+          "name": "Code",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakePaymentMethod": {
+      "label": "Payment Method",
+      "class": "FakePaymentMethod",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakepayment",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakepayment",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakepayment/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakepayment/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeChannel": {
+      "label": "Channel",
+      "class": "FakeChannel",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/channels",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/channels",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/channels/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/channels/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code": {
+          "name": "Code",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeOrderContent": {
+      "label": "Order Content",
+      "class": "FakeOrderContent",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakecontent",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakecontent",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakecontent/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakecontent/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "product": {
+          "name": "Product",
+          "type": "Entity",
+          "variant": "Product",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "quantity": {
+          "name": "Quantity",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "price": {
+          "name": "Price",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vat_rate": {
+          "name": "VAT rate",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Cohort": {
+      "label": "Cohort",
+      "class": "Cohort",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/cohorts",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/cohorts",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/cohorts/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/cohorts/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "cohort_label": {
+          "name": "Identifiant",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "customers": {
+          "name": "Clients liées",
+          "type": "Entity.id[]",
+          "variant": "Customer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Discount": {
+      "label": "Discount",
+      "class": "Discount",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/discounts",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/discounts",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/discounts/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/discounts/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/discounts/{id}",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "discount_label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "discount_type": {
+          "name": "Discount type",
+          "type": "Enum",
+          "variant": "AMOUNT, PERCENT",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "condition_type": {
+          "name": "Condition type",
+          "type": "Enum",
+          "variant": "ABSOLUTE, RELATIVE",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "value": {
+          "name": "Value",
+          "type": "number",
+          "variant": "float",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "codes": {
+          "name": "Promo Codes",
+          "type": "FakeEntity[]",
+          "variant": "FakeDiscountCodePromo",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "channels": {
+          "name": "Channels",
+          "type": "Entity[]",
+          "variant": "FakeChannel",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "destinations": {
+          "name": "Destinations",
+          "type": "Entity.id[]",
+          "variant": "Destination",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Point of sale",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "condition_time": {
+          "name": "Time condition",
+          "type": "Entity",
+          "variant": "TimesConditions",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "CodePromo": {
+      "label": "Code promo",
+      "class": "CodePromo",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/codes",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/codes",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/codes/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/codes/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code": {
+          "name": "Code",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "type": {
+          "name": "Code type",
+          "type": "Enum",
+          "variant": "BARCODE, TEXT",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "TimesConditions": {
+      "label": "Conditions de Temps",
+      "class": "TimesConditions",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/conditions-times",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/conditions-times",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/conditions-times/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/conditions-times/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "category": "Général",
+          "primary": false,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "weekdays": {
+          "name": "Week days",
+          "type": "date",
+          "variant": "weekdays",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "dateStart": {
+          "name": "Start date",
+          "type": "date",
+          "variant": "date",
+          "category": "Date",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "dateEnd": {
+          "name": "End date",
+          "type": "date",
+          "variant": "date",
+          "category": "Date",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "hourStart": {
+          "name": "Start hour",
+          "type": "date",
+          "variant": "time",
+          "category": "Date",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "hourEnd": {
+          "name": "End hour",
+          "type": "date",
+          "variant": "time",
+          "category": "Date",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "POSConfig": {
+      "label": "Configuration Point of Sale",
+      "class": "POSConfig",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/pos/config",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/pos/config",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/pos/config/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/pos/config/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "result": {
+          "name": "Result",
+          "type": "Enum",
+          "variant": "success, error",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "code": {
+          "name": "Code",
+          "type": "number",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "message": {
+          "name": "Message",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "data": {
+          "name": "DONNEES",
+          "type": "Entity",
+          "variant": "FakePOSConfig",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakePOSConfig": {
+      "label": "[FAKE] Configuration Point of Sale",
+      "class": "FakePOSConfig",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/pos/config",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/pos/config",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/pos/config/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/pos/config/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "Identifiant",
+          "type": "number",
+          "category": "Général",
+          "primary": false,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "config_id": {
+          "name": "Identifiant Config",
+          "type": "number",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entité",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "locale": {
+          "name": "Locale",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "locale_ticket": {
+          "name": "Locale ticket",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "timer_action": {
+          "name": "Action du timer",
+          "type": "Enum",
+          "variant": "RELOAD, NOTHING",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "Invoice": {
+      "label": "Invoice",
+      "class": "Invoice",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/invoices",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/invoices",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/invoices/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/invoices/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/invoices/{id}",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "id": {
+          "name": "ID",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "reference": {
+          "name": "Reference",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "entity": {
+          "name": "Entity",
+          "type": "Entity.id",
+          "variant": "Entity",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "customer": {
+          "name": "Customer",
+          "type": "Entity.id",
+          "variant": "Customer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "status": {
+          "name": "Status",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "user": {
+          "name": "User",
+          "type": "Entity.id",
+          "variant": "User",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "billing_address": {
+          "name": "Billing address",
+          "type": "FakeEntity",
+          "variant": "FakeAddress",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "destination": {
+          "name": "Destination",
+          "type": "Entity.id",
+          "variant": "Destination",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "channel": {
+          "name": "Channel",
+          "type": "Entity",
+          "variant": "FakeChannel",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "order_number": {
+          "name": "Order number",
+          "type": "string",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "content": {
+          "name": "Content",
+          "type": "FakeEntity[]",
+          "variant": "FakeInvoiceContent",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vat_allocation": {
+          "name": "VAT allocation",
+          "type": "FakeEntity[]",
+          "variant": "FakeVATallocation",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "total": {
+          "name": "Pre tax total ",
+          "type": "number",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "total_ttc": {
+          "name": "Total including tax",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "created_at": {
+          "name": "Created at",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "bank_account": {
+          "name": "Cashier machine",
+          "type": "Entity.id",
+          "variant": "BankAccount",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "orders": {
+          "name": "Orders",
+          "type": "Entity.id[]",
+          "variant": "Order",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_paid": {
+          "name": "Is paid",
+          "type": "boolean",
+          "category": "Général",
+          "primary": false,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeVATallocation": {
+      "label": "VATallocation",
+      "class": "FakeVATallocation",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakevatallocation",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakevatallocation",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakevatallocation/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakevatallocation/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "vat_rate": {
+          "name": "Taux de TVA",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "total_tax_excluded": {
+          "name": "Total HT",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vat_amount": {
+          "name": "Total TVA",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "total_tax_included": {
+          "name": "Total TTC",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeInvoiceContent": {
+      "label": "Invoice Content",
+      "class": "FakeInvoiceContent",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakecontent",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakecontent",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakecontent/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakecontent/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "uuid": {
+          "name": "UUID",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "product": {
+          "name": "Product",
+          "type": "Entity",
+          "variant": "Product",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "label": {
+          "name": "Label",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "description": {
+          "name": "Description",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "quantity": {
+          "name": "Quantity",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "price": {
+          "name": "Price",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "vat_rate": {
+          "name": "VAT rate",
+          "type": "number",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_payable": {
+          "name": "Is payable",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_discount": {
+          "name": "Is discount",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeConditionPrice": {
+      "label": "FakeConditionPrice",
+      "class": "FakeConditionPrice",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/FakeConditionPrice",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/FakeConditionPrice",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/FakeConditionPrice/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/FakeConditionPrice/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "destinations": {
+          "name": "Destinations",
+          "type": "Entity.id[]",
+          "variant": "Destination",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "date_start": {
+          "name": "Start date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "date_end": {
+          "name": "End date",
+          "type": "date",
+          "variant": "datetime",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "hour_start": {
+          "name": "Start hour",
+          "type": "date",
+          "variant": "time",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "hour_end": {
+          "name": "End hour",
+          "type": "date",
+          "variant": "time",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "weekdays": {
+          "name": "Week days",
+          "type": "date",
+          "variant": "weekdays",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "is_exclusive": {
+          "name": "Is exclusive",
+          "type": "boolean",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeDiscountCodePromo": {
+      "label": "Code Promo",
+      "class": "FakeDiscountCodePromo",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakecodepromo",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakecodepromo",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakecodepromo/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakecodepromo/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "code": {
+          "name": "Code",
+          "type": "Entity",
+          "variant": "CodePromo",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "days_before_reset": {
+          "name": "Days before reset",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        },
+        "max_uses": {
+          "name": "Max uses",
+          "type": "number",
+          "variant": "integer",
+          "category": "Général",
+          "primary": true,
+          "default": false,
+          "required": false,
+          "sortable": false
+        }
+      }
+    },
+    "FakeAddress": {
+      "label": "Adresses",
+      "class": "FakeAddress",
+      "search": false,
+      "crud": {
+        "create": {
+          "type": "create",
+          "url": "/fakeaddresses",
+          "method": "POST"
+        },
+        "read_all": {
+          "type": "read_all",
+          "url": "/fakeaddresses",
+          "method": "GET"
+        },
+        "read_unit": {
+          "type": "read_unit",
+          "url": "/fakeaddresses/{id}",
+          "method": "GET"
+        },
+        "update": {
+          "type": "update",
+          "url": "/fakeaddresses/{id}",
+          "method": "PUT"
+        },
+        "delete": {
+          "type": "delete",
+          "url": "/fakeaddresses/{id}",
+          "method": "DELETE"
+        }
+      },
+      "attributes": {
+        "address_inline": {
+          "name": "Adresse",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "street_number": {
+          "name": "Numéro",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "street_name": {
+          "name": "Nom de la rue",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "postal_code": {
+          "name": "Code postal",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "city": {
+          "name": "Ville",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "complement": {
+          "name": "Complément d'adresse",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "entrance_code": {
+          "name": "Code d'entrée",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "firstname": {
+          "name": "Prénom",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "lastname": {
+          "name": "Nom",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        },
+        "telephone": {
+          "name": "Numéro de téléphone",
+          "type": "string",
+          "category": "Général",
+          "primary": true,
+          "default": true,
+          "required": false,
+          "sortable": false
+        }
+      }
+    }
+  }
+}

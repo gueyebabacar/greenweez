@@ -1,0 +1,37 @@
+stages:
+    - test
+    - security
+
+cache:
+    paths:
+        - vendor/
+
+.template: &template
+    script:
+        - (if [ "$(docker-compose help)" ]; then make $TARGET; else make make-configure-no-docker $TARGET; fi);
+    after_script:
+        - (if [ "$(docker-compose help)" ]; then make clear; else make make-configure-no-docker clear; fi);
+
+coding-style:
+    <<: *template
+    stage: test
+    variables:
+        TARGET: test-cs
+
+unit-tests:
+    <<: *template
+    stage: test
+    variables:
+        TARGET: test-unit
+
+functionnal-tests:
+    <<: *template
+    stage: test
+    variables:
+        TARGET: test-functional
+
+security:
+    <<: *template
+    stage: security
+    variables:
+        TARGET: check-security
