@@ -3,12 +3,11 @@
 namespace ApiBundle\Service;
 
 use JMS\Serializer\DeserializationContext;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use WyndApi\WyndApiCoreBundle\Entity\ProductInterface;
 use JMS\Serializer\SerializerInterface;
 use WyndApi\WyndApiCoreBundle\Manager\ProductManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-
+use Psr\Log\LoggerInterface;
 
 class GreenWeezImportFile
 {
@@ -33,30 +32,38 @@ class GreenWeezImportFile
     protected $validator;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * GreenWeezImportFile constructor.
      * @param $rootDir
      * @param $serializer
      * @param $productManager
      * @param $validator
+     * @param $logger
      */
     public function __construct(
         $rootDir,
         SerializerInterface $serializer,
         ProductManager $productManager,
-        ValidatorInterface $validator
+        ValidatorInterface $validator,
+        LoggerInterface $logger
     )
     {
         $this->rootDir = realpath($rootDir . '/../web');
         $this->serializer = $serializer;
         $this->productManager = $productManager;
         $this->validator = $validator;
+        $this->logger = $logger;
     }
 
     /**
-     * @return bool|string
+     * @return bool
+     * @throws \Exception
      */
     public function importGreenweezJsonFile() {
-
         $file = $this->getPath('products.json');
         $jsonData = file_get_contents($file);
         $type = sprintf('array<%s>', ProductInterface::class);
@@ -66,7 +73,8 @@ class GreenWeezImportFile
         foreach ($products as $i => $product) {
             $errors = count($this->validator->validate($product));
             if ($errors > 0) {
-                printf($errors);
+                $this->logger->error($errors);
+                throw new \Exception('An error has occured while importing products');
             }
             $this->productManager->save($product, false);
             if (($i % $batchSize) === 0) {

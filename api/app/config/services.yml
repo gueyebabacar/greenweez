@@ -5,4 +5,4 @@ services:
 
     greenweez_import:
         class: ApiBundle\Service\GreenWeezImportFile
-        arguments: ['%kernel.root_dir%', '@jms_serializer.serializer', '@api.product_manager', '@validator' ]
+        arguments: ['%kernel.root_dir%','@jms_serializer.serializer','@api.product_manager','@validator','@logger']
