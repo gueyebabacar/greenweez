@@ -215,11 +215,8 @@ lexik_maintenance:
 app:
     wynd_api:
         stock_enabled: false
-        wynd_resolve_target_entities:
-            WyndApi\WyndApiCoreBundle\Entity\Order\OrderInterface: ApiBundle\Entity\Order
-            WyndApi\WyndApiCoreBundle\Entity\ProductInterface: ApiBundle\Entity\Product
-            WyndApi\WyndApiCoreBundle\Entity\EntityInterface: ApiBundle\Entity\Entity
+        wynd_resolve_target_entities: ~
 
 wynd_booking_api:
-    booking_resolve_target_entities:
-        WyndApi\WyndApiCoreBundle\Entity\Order\OrderInterface: ApiBundle\Entity\Order
+    booking_resolve_target_entities: ~
+#        WyndApi\WyndApiCoreBundle\Entity\Order\OrderInterface: ApiBundle\Entity\Order

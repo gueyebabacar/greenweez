@@ -2,3 +2,7 @@ services:
     cache:
         class: Doctrine\Common\Cache\PhpFileCache
         arguments: ['%kernel.cache_dir%']
+
+    greenweez_import:
+        class: ApiBundle\Service\GreenWeezImportFile
+        arguments: ['%kernel.root_dir%', '@service_container']
