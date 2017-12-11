@@ -5,6 +5,9 @@ namespace ApiBundle\Service;
 use JMS\Serializer\DeserializationContext;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use WyndApi\WyndApiCoreBundle\Entity\ProductInterface;
+use JMS\Serializer\SerializerInterface;
+use WyndApi\WyndApiCoreBundle\Manager\ProductManager;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 class GreenWeezImportFile
@@ -15,19 +18,38 @@ class GreenWeezImportFile
     protected $rootDir;
 
     /**
-     * @var ContainerInterface
+     * @var SerializerInterface
      */
-    protected $container;
+    protected $serializer;
+
+    /**
+     * @var ProductManager
+     */
+    protected $productManager;
+
+    /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
 
     /**
      * GreenWeezImportFile constructor.
      * @param $rootDir
-     * @param $container
+     * @param $serializer
+     * @param $productManager
+     * @param $validator
      */
-    public function __construct($rootDir, ContainerInterface $container)
+    public function __construct(
+        $rootDir,
+        SerializerInterface $serializer,
+        ProductManager $productManager,
+        ValidatorInterface $validator
+    )
     {
         $this->rootDir = realpath($rootDir . '/../web');
-        $this->container = $container;
+        $this->serializer = $serializer;
+        $this->productManager = $productManager;
+        $this->validator = $validator;
     }
 
     /**
@@ -38,24 +60,22 @@ class GreenWeezImportFile
         $file = $this->getPath('products.json');
         $jsonData = file_get_contents($file);
         $type = sprintf('array<%s>', ProductInterface::class);
-        $productManager = $this->container->get('api.product_manager');
-        $products = $this->container->get('jms_serializer')->fromArray(\GuzzleHttp\json_decode($jsonData, true), $type, DeserializationContext::create());
-        $validator = $this->container->get('validator');
+        $products = $this->serializer->fromArray(\GuzzleHttp\json_decode($jsonData, true), $type, DeserializationContext::create());
 
         $batchSize = 20;
         foreach ($products as $i => $product) {
-            $errors = count($validator->validate($product));
+            $errors = count($this->validator->validate($product));
             if ($errors > 0) {
-                var_dump($errors);
+                printf($errors);
             }
-            $productManager->save($product, false);
+            $this->productManager->save($product, false);
             if (($i % $batchSize) === 0) {
-                $productManager->flush();
-                $productManager->clear(); // Detaches all objects from Doctrine!
+                $this->productManager->flush();
+                $this->productManager->clear(); // Detaches all objects from Doctrine!
             }
         }
-        $productManager->flush(); //Persist objects that did not make up an entire batch
-        $productManager->clear();
+        $this->productManager->flush(); //Persist objects that did not make up an entire batch
+        $this->productManager->clear();
 
         return true;
     }
