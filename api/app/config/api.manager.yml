@@ -1,0 +1,6 @@
+services:
+    api.brand_manager:
+        class: WyndApi\WyndApiCoreBundle\Manager\BaseManager
+        arguments: ["@doctrine.orm.entity_manager", ApiBundle\Entity\Brand]
+
+

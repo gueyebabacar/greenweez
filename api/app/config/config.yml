@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: elastica.yml }
     - { resource: services.yml }
+    - { resource: api.manager.yml }
 
 framework:
     cache:
@@ -215,7 +216,8 @@ lexik_maintenance:
 app:
     wynd_api:
         stock_enabled: false
-        wynd_resolve_target_entities: ~
+        wynd_resolve_target_entities:
+            WyndApi\WyndApiCoreBundle\Entity\ProductInterface: ApiBundle\Entity\Product
 
 wynd_booking_api:
     booking_resolve_target_entities: ~

@@ -1,0 +1,14 @@
+{
+  "certifications": [
+    {
+      "id": 3,
+      "name": "Ce produit vous apporte un bonus éco-miles",
+      "image_path": "/images/certifications/3.png"
+    },
+    {
+      "id": 5,
+      "name": "Organisme de Certification - Notamment agriculture biologique",
+      "image_path": "/images/certifications/5.png"
+    }
+  ]
+}
