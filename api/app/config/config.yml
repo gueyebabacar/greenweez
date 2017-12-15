@@ -3,7 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: elastica.yml }
     - { resource: services.yml }
-    - { resource: api.manager.yml }
+    - { resource: manager.yml }
 
 framework:
     cache:

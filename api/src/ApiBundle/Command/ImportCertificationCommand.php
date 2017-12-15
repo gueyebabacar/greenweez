@@ -13,15 +13,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class GreenWeezImportBrandCommand extends ContainerAwareCommand
+class ImportCertificationCommand extends ContainerAwareCommand
 {
 
     protected function configure()
     {
         $this
-            ->setName('greenweez:import:brand')
-            ->setDescription('import brand json data from greenweez.')
-            ->setHelp('This command import greenweez products once a day')
+            ->setName('greenweez:import:certification')
+            ->setDescription('import certification json data from greenweez.')
+            ->setHelp('This command import greenweez certifications once a day')
         ;
     }
 
@@ -33,7 +33,7 @@ class GreenWeezImportBrandCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ($this->getContainer()->get('greenweez_import')->importBrandJsonFile()) {
+        if ($this->getContainer()->get('greenweez_import')->importCertificationJsonFile()) {
             $output->writeln('File imported');
         }
     }

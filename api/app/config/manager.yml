@@ -1,0 +1,10 @@
+services:
+    api.brand_manager:
+        class: WyndApi\WyndApiCoreBundle\Manager\BaseManager
+        arguments: ["@doctrine.orm.entity_manager", ApiBundle\Entity\Brand]
+
+    api.certification_manager:
+        class: WyndApi\WyndApiCoreBundle\Manager\BaseManager
+        arguments: ["@doctrine.orm.entity_manager", ApiBundle\Entity\Certification]
+
+

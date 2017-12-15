@@ -2,6 +2,7 @@
 
 namespace ApiBundle\Service;
 
+use ApiBundle\Entity\Certification;
 use JMS\Serializer\DeserializationContext;
 use WyndApi\WyndApiCoreBundle\Entity\ProductInterface;
 use JMS\Serializer\SerializerInterface;
@@ -31,7 +32,7 @@ class GreenWeezImportFile
     /**
      * @var BaseManager
      */
-    protected $brandManager;
+    protected $baseManager;
 
     /**
      * @var ValidatorInterface
@@ -50,13 +51,14 @@ class GreenWeezImportFile
      * @param $productManager
      * @param $validator
      * @param $logger
+     * @param $baseManager
      */
-    public function __construct($rootDir, SerializerInterface $serializer, ProductManager $productManager, BaseManager $brandManager, ValidatorInterface $validator, LoggerInterface $logger)
+    public function __construct($rootDir, SerializerInterface $serializer, ProductManager $productManager, BaseManager $baseManager, ValidatorInterface $validator, LoggerInterface $logger)
     {
         $this->rootDir = realpath($rootDir . '/../web');
         $this->serializer = $serializer;
         $this->productManager = $productManager;
-        $this->brandManager = $brandManager;
+        $this->baseManager = $baseManager;
         $this->validator = $validator;
         $this->logger = $logger;
     }
@@ -111,15 +113,50 @@ class GreenWeezImportFile
                 $this->logger->error($errors);
                 throw new \Exception('An error has occured while importing products');
             } else {
-                $this->brandManager->save($brand, false);
+                $this->baseManager->save($brand, false);
                 if ((($i +1) % $batchSize) === 0) {
-                    $this->brandManager->flush();
-                    $this->brandManager->clear(); // Detaches all objects from Doctrine!
+                    $this->baseManager->flush();
+                    $this->baseManager->clear(); // Detaches all objects from Doctrine!
                 }
             }
         }
-        $this->brandManager->flush(); //Persist objects that did not make up an entire batch
-        $this->brandManager->clear();
+        $this->baseManager->flush(); //Persist objects that did not make up an entire batch
+        $this->baseManager->clear();
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    public function importCertificationJsonFile() {
+        $certifications = [];
+        $file = $this->getPath('certifications.json');
+        $jsonData = file_get_contents($file);
+        $type = sprintf('array<%s>', Certification::class);
+
+
+        foreach (\GuzzleHttp\json_decode($jsonData, true) as $i => $data) {
+            $certifications = $this->serializer->fromArray($data, $type, DeserializationContext::create());
+        }
+
+        $batchSize = 20;
+        foreach ($certifications as $i => $certification) {
+            $errors = count($this->validator->validate($certification));
+            if ($errors > 0) {
+                $this->logger->error($errors);
+                throw new \Exception('An error has occured while importing products');
+            } else {
+                $this->baseManager->save($certification, false);
+                if ((($i +1) % $batchSize) === 0) {
+                    $this->baseManager->flush();
+                    $this->baseManager->clear(); // Detaches all objects from Doctrine!
+                }
+            }
+        }
+        $this->baseManager->flush(); //Persist objects that did not make up an entire batch
+        $this->baseManager->clear();
 
         return true;
     }
