@@ -33,7 +33,7 @@ class ImportCertificationCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ($this->getContainer()->get('greenweez_import')->importCertificationJsonFile()) {
+        if ($this->getContainer()->get('greenweez_import')->importCertification()) {
             $output->writeln('File imported');
         }
     }

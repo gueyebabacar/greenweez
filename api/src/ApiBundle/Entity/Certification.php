@@ -14,11 +14,11 @@ use JMS\Serializer\Annotation as JMS;
 use WyndApi\WyndApiCoreBundle\Entity\EntityObjectInterface;
 
 /**
- * @ORM\Table(name="llx_brand")
+ * @ORM\Table(name="llx_certification")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
-class Brand implements EntityObjectInterface
+class Certification implements EntityObjectInterface
 {
 
     /**
@@ -43,29 +43,11 @@ class Brand implements EntityObjectInterface
 
     /**
      * @var string
-
-     * @code()
-     * @ORM\Column(length=100)
-     * @JMS\Groups(groups={"listProduct", "treeProduct", "synchronizationProduct"})
-     */
-    protected $name;
-
-    /**
-     * @var string
      *
      * @ORM\Column(length=255)
      * @JMS\Groups(groups={"list", "product", "listProduct", "treeProduct", "synchronizationProduct"})
      */
     protected $image_path;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(length=128)
-     * @JMS\Groups(groups={"list", "product", "listProduct", "treeProduct", "synchronizationProduct"})
-     */
-    protected $description;
-
 
     /**
      * Get id
@@ -78,9 +60,8 @@ class Brand implements EntityObjectInterface
     }
 
     /**
-     * Set id
-     *@param string $id
-     * @return integer
+     * @param $id
+     * @return $this
      */
     public function setId($id)
     {
@@ -90,35 +71,11 @@ class Brand implements EntityObjectInterface
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Brand
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set imagePath
      *
      * @param string $imagePath
      *
-     * @return Brand
+     * @return Certification
      */
     public function setImagePath($imagePath)
     {
@@ -138,30 +95,6 @@ class Brand implements EntityObjectInterface
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Brand
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * @return int
      */
     public function getRowid()
@@ -171,7 +104,7 @@ class Brand implements EntityObjectInterface
 
     /**
      * @param int $rowid
-     * @return Brand
+     * @return Certification
      */
     public function setRowid($rowid)
     {

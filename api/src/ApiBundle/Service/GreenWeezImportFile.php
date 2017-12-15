@@ -4,9 +4,11 @@ namespace ApiBundle\Service;
 
 use ApiBundle\Entity\Certification;
 use JMS\Serializer\DeserializationContext;
+use WyndApi\WyndApiCoreBundle\Entity\CategoryInterface;
 use WyndApi\WyndApiCoreBundle\Entity\ProductInterface;
 use JMS\Serializer\SerializerInterface;
 use WyndApi\WyndApiCoreBundle\Manager\BaseManager;
+use WyndApi\WyndApiCoreBundle\Manager\CategoryManager;
 use WyndApi\WyndApiCoreBundle\Manager\ProductManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Psr\Log\LoggerInterface;
@@ -25,14 +27,19 @@ class GreenWeezImportFile
     protected $serializer;
 
     /**
+     * @var BaseManager
+     */
+    protected $baseManager;
+
+    /**
      * @var ProductManager
      */
     protected $productManager;
 
     /**
-     * @var BaseManager
+     * @var CategoryManager
      */
-    protected $baseManager;
+    protected $categoryManager;
 
     /**
      * @var ValidatorInterface
@@ -53,11 +60,12 @@ class GreenWeezImportFile
      * @param $logger
      * @param $baseManager
      */
-    public function __construct($rootDir, SerializerInterface $serializer, ProductManager $productManager, BaseManager $baseManager, ValidatorInterface $validator, LoggerInterface $logger)
+    public function __construct($rootDir, SerializerInterface $serializer, ProductManager $productManager, CategoryManager $categoryManager, BaseManager $baseManager, ValidatorInterface $validator, LoggerInterface $logger)
     {
         $this->rootDir = realpath($rootDir . '/../web');
         $this->serializer = $serializer;
         $this->productManager = $productManager;
+        $this->categoryManager = $categoryManager;
         $this->baseManager = $baseManager;
         $this->validator = $validator;
         $this->logger = $logger;
@@ -67,7 +75,7 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importGreenweezJsonFile() {
+    public function importGreenweez() {
         $file = $this->getPath('products.json');
         $jsonData = file_get_contents($file);
         $type = sprintf('array<%s>', ProductInterface::class);
@@ -80,7 +88,7 @@ class GreenWeezImportFile
                 throw new \Exception('An error has occured while importing products');
             } else {
                 $this->productManager->save($product, false);
-                if (($i % $batchSize) === 0) {
+                if ((($i +1) % $batchSize) === 0) {
                     $this->productManager->flush();
                     $this->productManager->clear(); // Detaches all objects from Doctrine!
                 }
@@ -96,15 +104,43 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importBrandJsonFile() {
-        $brands = [];
+    public function importCategories() {
+        $file = $this->getPath('categories.json');
+        $jsonData = file_get_contents($file);
+        $type = sprintf('array<%s>', CategoryInterface::class);
+        $categoriesArray = \GuzzleHttp\json_decode($jsonData, true);
+        $categories = $this->serializer->fromArray($categoriesArray['categories'], $type, DeserializationContext::create());
+
+        $batchSize = 20;
+        foreach ($categories as $i => $category) {
+            $errors = $this->validator->validate($category);
+            if (count($errors) > 0) {
+                throw new \Exception('An error has occured while importing products');
+            } else {
+                $this->categoryManager->save($category, false);
+                if ((($i + 1) % $batchSize) === 0) {
+                    $this->categoryManager->flush();
+                    $this->categoryManager->clear(); // Detaches all objects from Doctrine!
+                }
+            }
+        }
+        $this->categoryManager->flush(); //Persist objects that did not make up an entire batch
+        $this->categoryManager->clear();
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    public function importBrand() {
         $file = $this->getPath('brands.json');
         $jsonData = file_get_contents($file);
         $type = sprintf('array<%s>', Brand::class);
 
-        foreach (\GuzzleHttp\json_decode($jsonData, true) as $i => $data) {
-            $brands = $this->serializer->fromArray($data, $type, DeserializationContext::create());
-        }
+        $brandsArray = \GuzzleHttp\json_decode($jsonData, true);
+        $brands = $this->serializer->fromArray($brandsArray['brands'], $type, DeserializationContext::create());
 
         $batchSize = 20;
         foreach ($brands as $i => $brand) {
@@ -114,7 +150,7 @@ class GreenWeezImportFile
                 throw new \Exception('An error has occured while importing products');
             } else {
                 $this->baseManager->save($brand, false);
-                if ((($i +1) % $batchSize) === 0) {
+                if ((($i + 1) % $batchSize) === 0) {
                     $this->baseManager->flush();
                     $this->baseManager->clear(); // Detaches all objects from Doctrine!
                 }
@@ -130,16 +166,13 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importCertificationJsonFile() {
-        $certifications = [];
+    public function importCertification() {
         $file = $this->getPath('certifications.json');
         $jsonData = file_get_contents($file);
         $type = sprintf('array<%s>', Certification::class);
 
-
-        foreach (\GuzzleHttp\json_decode($jsonData, true) as $i => $data) {
-            $certifications = $this->serializer->fromArray($data, $type, DeserializationContext::create());
-        }
+        $certificationsArray = \GuzzleHttp\json_decode($jsonData, true);
+        $certifications = $this->serializer->fromArray($certificationsArray['certifications'], $type, DeserializationContext::create());
 
         $batchSize = 20;
         foreach ($certifications as $i => $certification) {

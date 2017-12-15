@@ -9,22 +9,19 @@
 
 namespace ApiBundle\Command;
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class ImportGreenWeezCommand extends ContainerAwareCommand
+class ImportCategoryCommand extends ContainerAwareCommand
 {
-    /** @var Kernel $kernel */
-    protected $kernel;
 
     protected function configure()
     {
         $this
-            ->setName('greenweez:import')
-            ->setDescription('import json data from greenweez.')
-            ->setHelp('This command import greenweez products once a day')
+            ->setName('greenweez:import:categories')
+            ->setDescription('import categories json data from greenweez.')
+            ->setHelp('This command import greenweez categories once a day')
         ;
     }
 
@@ -32,10 +29,12 @@ class ImportGreenWeezCommand extends ContainerAwareCommand
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('greenweez_import')->importGreenweez();
-
+        if ($this->getContainer()->get('greenweez_import')->importCategories()) {
+            $output->writeln('File imported');
+        }
     }
 }

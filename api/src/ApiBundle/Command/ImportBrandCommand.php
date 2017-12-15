@@ -33,7 +33,7 @@ class ImportBrandCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ($this->getContainer()->get('greenweez_import')->importBrandJsonFile()) {
+        if ($this->getContainer()->get('greenweez_import')->importBrand()) {
             $output->writeln('File imported');
         }
     }

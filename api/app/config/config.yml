@@ -218,6 +218,7 @@ app:
         stock_enabled: false
         wynd_resolve_target_entities:
             WyndApi\WyndApiCoreBundle\Entity\ProductInterface: ApiBundle\Entity\Product
+            WyndApi\WyndApiCoreBundle\Entity\CategoryInterface: ApiBundle\Entity\Category
 
 wynd_booking_api:
     booking_resolve_target_entities: ~

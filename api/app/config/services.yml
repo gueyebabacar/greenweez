@@ -5,10 +5,16 @@ services:
 
     greenweez_import:
         class: ApiBundle\Service\GreenWeezImportFile
-        arguments: ['%kernel.root_dir%','@jms_serializer.serializer','@api.product_manager', '@api.brand_manager','@validator','@logger']
+        arguments: ['%kernel.root_dir%','@jms_serializer.serializer','@api.product_manager', '@api.category_manager', '@api.brand_manager','@validator','@logger']
 
     greenweez_extract_command:
         class: ApiBundle\Service\GreenWeezExtractTransaction
         arguments: ['%kernel.root_dir%','@jms_serializer.serializer' ,'@api.order_manager']
+
+    greenweez_serializationlistener:
+        class: ApiBundle\Service\SerializationListener
+        arguments: ["%wynd_resolve_target_entities%"]
+        tags:
+            - { name: jms_serializer.event_subscriber }
 
 
