@@ -9,17 +9,10 @@
 
 namespace ApiBundle\Service;
 
-use ApiBundle\Entity\Category;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
-use JMS\Serializer\EventDispatcher\PreSerializeEvent;
-use JMS\Serializer\Metadata\PropertyMetadata;
 use WyndApi\WyndApiCoreBundle\Entity\CategoryInterface;
-use WyndApi\WyndApiCoreBundle\Entity\Product;
 use WyndApi\WyndApiCoreBundle\Entity\ProductInterface;
-use WyndApi\WyndApiCoreBundle\Entity\Super\Address;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
-use WyndApi\WyndApiCoreBundle\Manager\ProductManager;
 
 /**
  * Add data after serialization.
@@ -38,7 +31,6 @@ class SerializationListener implements EventSubscriberInterface
         $this->resolveTargetEntities = $resolveTargetEntities;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -48,7 +40,6 @@ class SerializationListener implements EventSubscriberInterface
             ['event' => 'serializer.pre_deserialize', 'method' => 'onPreDeserialize'],
         ];
     }
-
 
     /**
      * Injecting Address URL's attributes (entity and entity_id) in the input data.
@@ -137,5 +128,4 @@ class SerializationListener implements EventSubscriberInterface
         }
 
     }
-
 }
