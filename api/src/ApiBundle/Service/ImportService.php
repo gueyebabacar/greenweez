@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Psr\Log\LoggerInterface;
 use ApiBundle\Entity\Brand;
 
-class GreenWeezImportFile
+class ImportService
 {
     /**
      * @var rootDir
@@ -75,17 +75,18 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importGreenweez() {
-        $file = $this->getPath('products.json');
-        $jsonData = file_get_contents($file);
+    public function importProduct($filePath) {
+
+        $jsonData = file_get_contents($filePath);
         $type = sprintf('array<%s>', ProductInterface::class);
-        $products = $this->serializer->fromArray(\GuzzleHttp\json_decode($jsonData, true), $type, DeserializationContext::create());
+        $productsArray = \GuzzleHttp\json_decode($jsonData, true);
+        $products = $this->serializer->fromArray($productsArray['products'], $type, DeserializationContext::create());
 
         $batchSize = 20;
         foreach ($products as $i => $product) {
-            $errors = count($this->validator->validate($product));
-            if ($errors > 0) {
-                throw new \Exception('An error has occured while importing products');
+            $errors = $this->validator->validate($product);
+            if (count($errors) > 0) {
+                throw new \Exception('An error has occured while importing products entity is not valid');
             } else {
                 $this->productManager->save($product, false);
                 if ((($i +1) % $batchSize) === 0) {
@@ -104,9 +105,9 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importCategories() {
-        $file = $this->getPath('categories.json');
-        $jsonData = file_get_contents($file);
+    public function importCategories($filePath) {
+
+        $jsonData = file_get_contents($filePath);
         $type = sprintf('array<%s>', CategoryInterface::class);
         $categoriesArray = \GuzzleHttp\json_decode($jsonData, true);
         $categories = $this->serializer->fromArray($categoriesArray['categories'], $type, DeserializationContext::create());
@@ -134,9 +135,9 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importBrand() {
-        $file = $this->getPath('brands.json');
-        $jsonData = file_get_contents($file);
+    public function importBrand($filePath) {
+
+        $jsonData = file_get_contents($filePath);
         $type = sprintf('array<%s>', Brand::class);
 
         $brandsArray = \GuzzleHttp\json_decode($jsonData, true);
@@ -166,9 +167,9 @@ class GreenWeezImportFile
      * @return bool
      * @throws \Exception
      */
-    public function importCertification() {
-        $file = $this->getPath('certifications.json');
-        $jsonData = file_get_contents($file);
+    public function importCertification($filePath) {
+
+        $jsonData = file_get_contents($filePath);
         $type = sprintf('array<%s>', Certification::class);
 
         $certificationsArray = \GuzzleHttp\json_decode($jsonData, true);

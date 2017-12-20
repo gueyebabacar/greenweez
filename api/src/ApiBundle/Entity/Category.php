@@ -26,15 +26,6 @@ class Category extends baseCategory implements CategoryInterface
 {
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_cat", type="integer")
-     * @JMS\Groups(groups={"listProduct", "treeProduct", "synchronizationProduct"})
-     *
-     */
-    protected $id_cat;
-
-    /**
      * @var bool
      *
      * @ORM\Column(type="boolean", name="is_default")
@@ -57,24 +48,5 @@ class Category extends baseCategory implements CategoryInterface
     public function __construct() {
         parent::__construct();
     }
-
-    /**
-     * @return int
-     */
-    public function getIdCat()
-    {
-        return $this->id_cat;
-    }
-
-    /**
-     * @param int $id_cat
-     * @return Category
-     */
-    public function setIdCat($id_cat)
-    {
-        $this->id_cat = $id_cat;
-        return $this;
-    }
-
 
 }

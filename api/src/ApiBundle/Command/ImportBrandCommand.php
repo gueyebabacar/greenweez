@@ -9,6 +9,7 @@
 
 namespace ApiBundle\Command;
 
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -22,6 +23,7 @@ class ImportBrandCommand extends ContainerAwareCommand
             ->setName('greenweez:import:brand')
             ->setDescription('import brand json data from greenweez.')
             ->setHelp('This command import greenweez products once a day')
+            ->addArgument('file_path', InputArgument::OPTIONAL, 'chemin du fichier')
         ;
     }
 
@@ -33,7 +35,13 @@ class ImportBrandCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ($this->getContainer()->get('greenweez_import')->importBrand()) {
+        $filePath = $input->getArgument('file_path');
+
+        if ($filePath !== null && !is_file($filePath)) {
+            throw new \Exception("File not found : '" . $filePath . "'!");
+        }
+
+        if ($this->getContainer()->get('greenweez_import')->importBrand($filePath)) {
             $output->writeln('File imported');
         }
     }

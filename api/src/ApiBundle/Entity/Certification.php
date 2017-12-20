@@ -9,9 +9,12 @@
 
 namespace ApiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use WyndApi\WyndApiCoreBundle\Entity\EntityObjectInterface;
+use WyndApi\WyndApiCoreBundle\Entity\CertificatInterface;
 
 /**
  * @ORM\Table(name="llx_certification")
@@ -30,15 +33,6 @@ class Certification implements EntityObjectInterface
      *
      * @JMS\Groups(groups={"listProduct", "treeProduct", "listOrder", "tag", "list", "product", "productGroups", "invoice", "tree", "complete", "id"})
      */
-    protected $rowid;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @JMS\Groups(groups={"listProduct", "treeProduct", "synchronizationProduct"})
-     *
-     */
     protected $id;
 
     /**
@@ -48,6 +42,24 @@ class Certification implements EntityObjectInterface
      * @JMS\Groups(groups={"list", "product", "listProduct", "treeProduct", "synchronizationProduct"})
      */
     protected $image_path;
+
+
+    /**
+     * @var Collection $products
+     *
+     * @ORM\ManyToMany(targetEntity="WyndApi\WyndApiCoreBundle\Entity\ProductInterface", mappedBy="certifications")
+     *
+     */
+    private $products;
+
+    /**
+     * Certification constructor.
+     */
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -111,5 +123,26 @@ class Certification implements EntityObjectInterface
         $this->rowid = $rowid;
         return $this;
     }
+
+    /**
+     * @return Product
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param Product $products
+     * @return Certification
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+
+        return $this;
+    }
+
+
 
 }

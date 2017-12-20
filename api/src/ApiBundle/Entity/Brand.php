@@ -30,15 +30,6 @@ class Brand implements EntityObjectInterface
      *
      * @JMS\Groups(groups={"listProduct", "treeProduct", "listOrder", "tag", "list", "product", "productGroups", "invoice", "tree", "complete", "id"})
      */
-    protected $rowid;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @JMS\Groups(groups={"listProduct", "treeProduct", "synchronizationProduct"})
-     *
-     */
     protected $id;
 
     /**
@@ -159,24 +150,6 @@ class Brand implements EntityObjectInterface
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRowid()
-    {
-        return $this->rowid;
-    }
-
-    /**
-     * @param int $rowid
-     * @return Brand
-     */
-    public function setRowid($rowid)
-    {
-        $this->rowid = $rowid;
-        return $this;
     }
 
 }

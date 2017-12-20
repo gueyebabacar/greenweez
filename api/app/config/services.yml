@@ -4,7 +4,7 @@ services:
         arguments: ['%kernel.cache_dir%']
 
     greenweez_import:
-        class: ApiBundle\Service\GreenWeezImportFile
+        class: ApiBundle\Service\ImportService
         arguments: ['%kernel.root_dir%','@jms_serializer.serializer','@api.product_manager', '@api.category_manager', '@api.brand_manager','@validator','@logger']
 
     greenweez_extract_command:
