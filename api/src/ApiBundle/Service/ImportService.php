@@ -17,11 +17,6 @@ use ApiBundle\Entity\Brand;
 class ImportService
 {
     /**
-     * @var rootDir
-     */
-    protected $rootDir;
-
-    /**
      * @var SerializerInterface
      */
     protected $serializer;
@@ -53,16 +48,14 @@ class ImportService
 
     /**
      * GreenWeezImportFile constructor.
-     * @param $rootDir
      * @param $serializer
      * @param $productManager
      * @param $validator
      * @param $logger
      * @param $baseManager
      */
-    public function __construct($rootDir, SerializerInterface $serializer, ProductManager $productManager, CategoryManager $categoryManager, BaseManager $baseManager, ValidatorInterface $validator, LoggerInterface $logger)
+    public function __construct(SerializerInterface $serializer, ProductManager $productManager, CategoryManager $categoryManager, BaseManager $baseManager, ValidatorInterface $validator, LoggerInterface $logger)
     {
-        $this->rootDir = realpath($rootDir . '/../web');
         $this->serializer = $serializer;
         $this->productManager = $productManager;
         $this->categoryManager = $categoryManager;
@@ -72,8 +65,10 @@ class ImportService
     }
 
     /**
+     * @param $filePath
      * @return bool
      * @throws \Exception
+     *
      */
     public function importProduct($filePath) {
 
@@ -102,6 +97,7 @@ class ImportService
     }
 
     /**
+     * @param $filePath
      * @return bool
      * @throws \Exception
      */
@@ -132,6 +128,7 @@ class ImportService
     }
 
     /**
+     * @param $filePath
      * @return bool
      * @throws \Exception
      */
@@ -164,6 +161,7 @@ class ImportService
     }
 
     /**
+     * @param $filePath
      * @return bool
      * @throws \Exception
      */
@@ -193,16 +191,5 @@ class ImportService
         $this->baseManager->clear();
 
         return true;
-    }
-
-    /**
-     * @param $fileName
-     * @return bool|string
-     */
-    public function getPath($fileName) {
-
-        $path = realpath($this->rootDir.DIRECTORY_SEPARATOR.'GreenWeezData'.DIRECTORY_SEPARATOR.$fileName);
-
-        return $path;
     }
 }

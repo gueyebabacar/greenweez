@@ -10,15 +10,12 @@
 namespace ApiBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 class ImportProductCommand extends ContainerAwareCommand
 {
-    /** @var Kernel $kernel */
-    protected $kernel;
 
     protected function configure()
     {
