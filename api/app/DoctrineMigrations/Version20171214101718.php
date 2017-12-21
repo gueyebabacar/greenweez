@@ -18,13 +18,18 @@ class Version20171214101718 extends AbstractMigration
         // Target
         $this->addSql('CREATE TABLE `llx_brand` ( 
                   `rowid` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-                  `id` INT(11), 
                   `name` varchar(100) NOT NULL, 
                   `image_path` varchar(255) NOT NULL, 
                   `description` text NOT NULL) 
                   ENGINE = InnoDB
                   DEFAULT CHARSET=utf8;
                   ');
+
+
+        $this->addSql('ALTER TABLE `llx_product` 
+                        ADD `brand_id` INT NULL,
+                        ADD CONSTRAINT `llx_product_brand_id` FOREIGN KEY (`brand_id`) REFERENCES `llx_brand`(`rowid`);
+                    ');
     }
 
     /**
@@ -33,6 +38,10 @@ class Version20171214101718 extends AbstractMigration
     public function down(Schema $schema)
     {
         $this->addSql('DROP TABLE `llx_brand`');
+        $this->addSql('ALTER TABLE llx_product 
+                        DROP FOREIGN KEY llx_product_brand_id,
+                        DROP `brand_id`
+                    ');
 
     }
 }

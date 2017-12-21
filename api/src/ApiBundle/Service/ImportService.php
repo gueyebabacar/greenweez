@@ -42,7 +42,7 @@ class ImportService
 
 
     /**
-     * GreenWeezImportFile constructor.
+     * ImportService constructor.
      * @param $serializer
      * @param $productManager
      * @param $validator
