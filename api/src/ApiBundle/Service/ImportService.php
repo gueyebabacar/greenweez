@@ -11,7 +11,6 @@ use WyndApi\WyndApiCoreBundle\Manager\BaseManager;
 use WyndApi\WyndApiCoreBundle\Manager\CategoryManager;
 use WyndApi\WyndApiCoreBundle\Manager\ProductManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Psr\Log\LoggerInterface;
 use ApiBundle\Entity\Brand;
 
 class ImportService
@@ -41,27 +40,22 @@ class ImportService
      */
     protected $validator;
 
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
 
     /**
      * GreenWeezImportFile constructor.
      * @param $serializer
      * @param $productManager
      * @param $validator
-     * @param $logger
      * @param $baseManager
+     * @param $categoryManager
      */
-    public function __construct(SerializerInterface $serializer, ProductManager $productManager, CategoryManager $categoryManager, BaseManager $baseManager, ValidatorInterface $validator, LoggerInterface $logger)
+    public function __construct(SerializerInterface $serializer, ProductManager $productManager, CategoryManager $categoryManager, BaseManager $baseManager, ValidatorInterface $validator)
     {
         $this->serializer = $serializer;
         $this->productManager = $productManager;
         $this->categoryManager = $categoryManager;
         $this->baseManager = $baseManager;
         $this->validator = $validator;
-        $this->logger = $logger;
     }
 
     /**
@@ -112,7 +106,7 @@ class ImportService
         foreach ($categories as $i => $category) {
             $errors = $this->validator->validate($category);
             if (count($errors) > 0) {
-                throw new \Exception('An error has occured while importing products');
+                throw new \Exception('An error has occured while importing categories entity is not valid');
             } else {
                 $this->categoryManager->save($category, false);
                 if ((($i + 1) % $batchSize) === 0) {
@@ -142,10 +136,9 @@ class ImportService
 
         $batchSize = 20;
         foreach ($brands as $i => $brand) {
-            $errors = count($this->validator->validate($brand));
-            if ($errors > 0) {
-                $this->logger->error($errors);
-                throw new \Exception('An error has occured while importing products');
+            $errors = $this->validator->validate($brand);
+            if (count($errors) > 0) {
+                throw new \Exception('An error has occured while importing brand entity is not valid');
             } else {
                 $this->baseManager->save($brand, false);
                 if ((($i + 1) % $batchSize) === 0) {
@@ -175,10 +168,9 @@ class ImportService
 
         $batchSize = 20;
         foreach ($certifications as $i => $certification) {
-            $errors = count($this->validator->validate($certification));
-            if ($errors > 0) {
-                $this->logger->error($errors);
-                throw new \Exception('An error has occured while importing products');
+            $errors = $this->validator->validate($certification);
+            if (count($errors) > 0) {
+                throw new \Exception('An error has occured while importing certifications entity is not valid');
             } else {
                 $this->baseManager->save($certification, false);
                 if ((($i +1) % $batchSize) === 0) {
