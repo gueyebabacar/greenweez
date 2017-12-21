@@ -2,24 +2,12 @@
 
 namespace ApiBundle\Service;
 
-use FOS\RestBundle\Context\Context;
-use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializationContext;
-use WyndApi\WyndApiCoreBundle\Entity\ProductInterface;
 use JMS\Serializer\SerializerInterface;
 use WyndApi\WyndApiCoreBundle\Manager\OrderManager;
 
-class GreenWeezExtractTransaction
+class ExportService
 {
-    /**
-     * @var rootDir
-     */
-    protected $rootDir;
-
-    /**
-     * @var ParamFetcherInterface
-     */
-    protected $paramFetcher;
 
     /**
      * @var SerializerInterface
@@ -32,40 +20,41 @@ class GreenWeezExtractTransaction
     protected $orderManager;
 
     /**
-     * GreenWeezExtractTransaction constructor.
-     * @param $rootDir
+     * ExportService constructor.
      * @param $serializer
      * @param $orderManager
      */
-    public function __construct($rootDir, SerializerInterface $serializer, OrderManager $orderManager)
+    public function __construct(SerializerInterface $serializer, OrderManager $orderManager)
     {
-        $this->rootDir = realpath($rootDir . '/../web');
         $this->serializer = $serializer;
         $this->orderManager = $orderManager;
     }
 
     /**
+     * @param $filePath
      * @return bool
-     * @throws \Exception
      */
-    public function extractGreenweezJsonFile() {
-
+    public function extractOrder($filePath) {
         $data = $this->orderManager->findAll();
         $data = $this->serializeData($data);
+        $file = $this->getPath($filePath).DIRECTORY_SEPARATOR.'orders.json';
 
+        file_put_contents($file, $data);
 
-        return $data;
+        return true;
     }
 
     /**
-     * @param $fileName
+     * @param $filePath
      * @return bool|string
      */
-    public function getPath($fileName) {
+    public function getPath($filePath) {
 
-        $path = realpath($this->rootDir.DIRECTORY_SEPARATOR.'GreenWeezData'.DIRECTORY_SEPARATOR.$fileName);
+        if (substr($filePath, -1) == '/') {
+            $filePath = substr($filePath, 0, -1);
+        }
 
-        return $path;
+        return $filePath;
     }
 
     private function serializeData($data){
@@ -74,7 +63,6 @@ class GreenWeezExtractTransaction
         $context->setSerializeNull(true);
         $context->attributes->set('template_data', []);
         $context->enableMaxDepthChecks();
-
 
         $result = $this->serializer->serialize($data, 'json', $context);
 
