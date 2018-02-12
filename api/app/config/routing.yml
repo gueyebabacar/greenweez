@@ -16,7 +16,7 @@ al_swagger_ui:
     resource: "@ALSwaggerUIBundle/Resources/config/routing.yml"
     prefix:   /documentation
 
-api_greenweez:
-    resource: "@ApiBundle/Controller/"
-    prefix:   "/api"
-    type:     rest
+#api_greenweez:
+#    resource: "@ApiBundle/Controller/"
+#    prefix:   "/api"
+#    type:     rest
