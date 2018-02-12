@@ -7,7 +7,7 @@ set -x
 
 git fetch
 
-git checkout -f ${1:-origin/master}
+git checkout -f ${1:-origin/develop}
 
 if [ -d scripts ]
  then
@@ -18,10 +18,10 @@ git submodule init
 
 git submodule update --force
 
-for i in api marketplace bo bo_sso
+for i in api
     do
           cd $i
-          sudo composer install
+          composer install
 
           if [ "$i" = "api" ]
           then
@@ -34,28 +34,28 @@ for i in api marketplace bo bo_sso
           #   npm run build-all
           #fi
 
-          if [ "$i" = "bo" ]
-          then
-             yarn install
-             yarn build
-          fi
+#          if [ "$i" = "bo" ]
+#          then
+#             yarn install
+#             yarn build
+#          fi
 
-          sudo bin/console cache:clear --env=prod --no-warmup
-          sudo bin/console cache:clear --env=dev --no-warmup
-          sudo chown -R apache. var
+          /usr/bin/php bin/console cache:clear --env=prod --no-warmup
+          /usr/bin/php bin/console cache:clear --env=dev --no-warmup
+          chown -R apache. var
 
           cd ..
 done
 
 # Update POS
-cd wyndPos
-git fetch
-git checkout -f ${1:-origin/master}
-sudo composer install
-sudo bin/console cache:clear --env=prod --no-warmup
-sudo bin/console cache:clear --env=dev --no-warmup
-sudo chown -R apache. var
-
-cd ..
+#cd wyndPos
+#git fetch
+#git checkout -f ${1:-origin/master}
+#sudo composer install
+#sudo bin/console cache:clear --env=prod --no-warmup
+#sudo bin/console cache:clear --env=dev --no-warmup
+#sudo chown -R apache. var
+#
+#cd ..
 
 #cp -r /var/www/jumble/api/app/config/bo/sifodyas/ /var/www/jumble/bo/web/compiled/app/config/
